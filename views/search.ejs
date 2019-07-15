@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<%- include('partials/head'); %>
+	</head>
+	<body>
+
+		<%- include('partials/header'); %>
+
+		<main>
+			<section class="container">
+
+			<form class="form-inline" action="/admin/search">
+				<label for="id">Patient name</label>
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" class="form-control" placeholder="Type patient name" name="title" />
+				</div>
+				<button type="submit" class="btn btn-primary mb-2">Search</button>
+			</form>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Patient ID</th>
+						<th>Patient name</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% patients.forEach((patient) => { %>
+						<tr>
+							<td><%= patient.patient_id %></td>
+							<td><%= patient.patient_name %></td>
+						</tr>
+					<% }); %>
+				</tbody>
+
+			</table>
+
+	</body>
+</html>
