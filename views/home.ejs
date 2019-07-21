@@ -8,7 +8,15 @@
 		<%- include('partials/header'); %>
 
     <div class="container" style="display:flex; align-items: center; flex-direction: column">
-      <img src="./static/logo.png"/>
+
+		<h1>MediSquare</h1>
+
+		<div class="dna">
+			<% for (var i = 0; i < 20; i++) { %>
+				<div class="ele"></div>
+			<% } %>
+		</div>
+
       <p class="lead">
         Only authorized users may lookup for patients.
       </p>

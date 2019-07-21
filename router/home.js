@@ -3,7 +3,7 @@
 async function getHomeRoute(req, res, next) {
   try {
     res.render('home', {
-      title: 'Book Database',
+      title: 'EMR Database',
       pageId: 'home',
       username: req.session.username,
     });

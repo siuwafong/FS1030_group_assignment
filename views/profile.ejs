@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+	<%- include('partials/head'); %>
+</head>
+
+<body>
+
+	<%- include('partials/header'); %>
+
+
+		<div class="container">
+			<img src="../static/logo.png"/>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="card" style="width: 18rem;">
+						<img src="" class="card-img-top" alt="">
+							<div class="card-body">
+								<h5 class="card-title">Patients</h5>
+								<form action="/admin/profile">
+									<input type="text" class="form-control" placeholder="Search for..." name="healthCardNumber">
+								</form>
+
+								<ul class="list-group list-group-flush">
+									<% patients.forEach((patient) => { %>
+
+										<li class="list-group-item">
+											<%= patient.first_name + ' ' + patient.last_name %><span class="badge"><%= patient.health_card_number %></span>
+										</li>
+
+									<% }); %>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="card text-center">
+							<div class="card-header">
+								<strong>John Doe</strong> <small class="label label-success pull-right">MRN: 12345</small>
+                <br/><strong class="heading">DOB: </strong> Apr 24, 1985
+                <button class="btn btn-sm btn-info pull-right">Edit</button>
+
+							</div>
+							<div class="card-body">
+
+								<ul class="nav nav-tabs">
+									<li class="nav-item">
+										<a class="nav-link active" href="#">Details</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">Medical Record</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<table class="table table-condensed table-bordered margin-top-10">
+										<tbody>
+											<tr>
+												<td>DOB</td>
+												<td>Apr 24, 1985</td>
+											</tr>
+											<tr>
+												<td>Genre</td>
+												<td>Male</td>
+											</tr>
+											<tr>
+												<td>Immunization</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Allergy</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</row>
+			</div>
+		</div>
+
+</body>
+
+</body>
+
+</html>

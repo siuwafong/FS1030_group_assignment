@@ -8,6 +8,7 @@ const searchRoutes = require('./search');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
 const registerRoutes = require('./register');
+const profileRoutes = require('./profile');
 
 
 /**
@@ -17,9 +18,11 @@ const registerRoutes = require('./register');
 // Home page
 router.get('/', homeRoutes.get);
 
-// Search page + delete function
+// Search page
 router.get('/admin/search', searchRoutes.get);
 
+// Profile page
+router.get('/admin/profile', profileRoutes.get);
 
 // Login page
 router.get('/login', loginRoutes.get);

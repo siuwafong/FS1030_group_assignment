@@ -61,3 +61,22 @@ button {
 .crud {
 	margin-top: 1rem;
 }
+
+.background {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+
+:root {
+  --bg-color: radial-gradient(circle at center, #fff, #ccc);
+  --dot-color1:deepskyblue;
+  --dot-color2:#000;
+}
+
+h1 {
+	margin-top: 4rem;
+}

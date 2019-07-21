@@ -8,7 +8,7 @@ const db = require('../db/patients');
 
 async function getSearchRoute(req, res, next) {
   try {
-    const patients = await db.searchPatients();
+    const patients = await db.readPatients();
     res.render('search', {
       patients,
       pageId: 'search',
