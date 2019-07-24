@@ -9,7 +9,7 @@ const { getSearchRoute } = require('./search');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
 const registerRoutes = require('./register');
-const { getProfileRoute, getFilteredRoute } = require('./profile');
+const { getProfileRoute } = require('./profile');
 
 
 /**
@@ -23,8 +23,7 @@ router.get('/', homeRoutes.get);
 router.get('/admin/search', getSearchRoute);
 
 // Profile page
-// router.get('/admin/profile', getProfileRoute);
-router.get('/admin/profile', getFilteredRoute);
+router.get('/admin/profile', getProfileRoute);
 
 // Login page
 router.get('/login', loginRoutes.get);
