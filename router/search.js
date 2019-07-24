@@ -1,25 +1,35 @@
 'use strict';
 
+const mysql = require('mysql');
+
+// this has to be a global variable - to be fixed
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'fs1030_new',
+});
+
 /**
  * Search page
  */
 
-const db = require('../db/patients');
-
-async function getSearchRoute(req, res, next) {
-  try {
-    const patients = await db.readPatients();
-    res.render('search', {
-      patients,
-      pageId: 'search',
-      title: 'Search',
-      username: req.session.username,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 module.exports = {
-  get: getSearchRoute,
+  getSearchRoute: (req, res) => {
+    const query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
+
+    // execute query
+    db.query(query, (err, result) => {
+      if (err) {
+        res.redirect('/');
+      }
+
+      res.render('search.ejs', {
+        patients: result,
+        title: 'EMR Database',
+        pageId: 'search',
+        username: req.session.username,
+      });
+    });
+  },
 };

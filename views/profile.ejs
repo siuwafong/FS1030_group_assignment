@@ -25,7 +25,7 @@
 								</form>
 
 								<ul class="list-group list-group-flush">
-									<% patients.forEach((patient) => { %>
+									<% patients.forEach((patient, index) => { %>
 
 										<li class="list-group-item">
 											<%= patient.first_name + ' ' + patient.last_name %><span class="badge"><%= patient.health_card_number %></span>

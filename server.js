@@ -3,14 +3,30 @@
 require('dotenv').config(); // Run this first to ensure all environment variables are set
 const express = require('express');
 const session = require('express-session');
+const mysql = require('mysql');
 const router = require('./router');
 const defaultSessionValues = require('./middleware/default-session-values');
 const authentification = require('./middleware/authentification');
 const defaultErrorHandler = require('./middleware/default-error-handler');
-
-
-// Create an instance of an Express server app
 const app = express();
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'fs1030_new',
+});
+
+// connect to database
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('Connected to database');
+});
+
+global.db = db;
+
 
 // Use the EJS templating engine (comment this out if no webpages are generated)
 app.set('view engine', 'ejs');

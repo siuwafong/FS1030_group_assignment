@@ -4,11 +4,12 @@ const express = require('express');
 
 const router = express.Router();
 const homeRoutes = require('./home');
-const searchRoutes = require('./search');
+// const searchRoutes = require('./search');
+const { getSearchRoute } = require('./search');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
 const registerRoutes = require('./register');
-const profileRoutes = require('./profile');
+const { getProfileRoute, getFilteredRoute } = require('./profile');
 
 
 /**
@@ -19,10 +20,11 @@ const profileRoutes = require('./profile');
 router.get('/', homeRoutes.get);
 
 // Search page
-router.get('/admin/search', searchRoutes.get);
+router.get('/admin/search', getSearchRoute);
 
 // Profile page
-router.get('/admin/profile', profileRoutes.get);
+// router.get('/admin/profile', getProfileRoute);
+router.get('/admin/profile', getFilteredRoute);
 
 // Login page
 router.get('/login', loginRoutes.get);
