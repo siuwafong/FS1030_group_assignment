@@ -30,6 +30,7 @@ module.exports = {
           title: 'EMR Database',
           pageId: 'profile',
           username: req.session.username,
+          healthCardNumber: healthCardNumber,
         });
       });
     } else {
@@ -45,38 +46,13 @@ module.exports = {
           title: 'EMR Database',
           pageId: 'profile',
           username: req.session.username,
+          healthCardNumber: healthCardNumber,
         });
       });
 
     }
 
   },
-
-  // getFilteredRoute: (req, res) => {
-  //   const healthCardNumber = req.query.healthCardNumber;
-
-  //   const query = "SELECT * FROM `patients` WHERE health_card_number LIKE '%" + String(healthCardNumber) + "%' ORDER BY health_card_number ASC";
-
-  //   // execute query
-  //   db.query(query, (err, result) => {
-  //     if (err) {
-  //       res.redirect('/');
-  //     }
-  //     // console.log(result);
-  //     res.render('profile.ejs', {
-  //       patients: result,
-  //       title: 'EMR Database',
-  //       pageId: 'profile',
-  //       username: req.session.username,
-  //     });
-  //   });
-  // },
-
-
-
-
-
-
 
 
 };

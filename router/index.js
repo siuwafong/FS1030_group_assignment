@@ -4,8 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 const homeRoutes = require('./home');
-// const searchRoutes = require('./search');
-const { getSearchRoute } = require('./search');
+const { getSearchRoute } = require('./patients');
 const loginRoutes = require('./login');
 const logoutRoutes = require('./logout');
 const registerRoutes = require('./register');
@@ -20,7 +19,7 @@ const { getProfileRoute } = require('./profile');
 router.get('/', homeRoutes.get);
 
 // Search page
-router.get('/admin/search', getSearchRoute);
+router.get('/admin/patients', getSearchRoute);
 
 // Profile page
 router.get('/admin/profile', getProfileRoute);

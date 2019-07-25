@@ -17,32 +17,14 @@
 	<% if (username) { %>
       <li class="nav-item">
         <a
-          class="nav-link <%= pageId === 'search' ? 'active' : null %>"
-          href="/admin/search"
+          class="nav-link <%= pageId === 'patients' ? 'active' : null %>"
+          href="/admin/patients"
         >
-          Search
+          Patients
         </a>
       </li>
 
       <li class="nav-item">
-        <a
-          class="nav-link <%= pageId === 'create' ? 'active' : null %>"
-          href="/admin/create"
-        >
-          Create
-        </a>
-      </li>
-
-			<li class="nav-item">
-        <a
-          class="nav-link <%= pageId === 'update' ? 'active' : null %>"
-          href="/admin/update"
-        >
-          Update
-        </a>
-      </li>
-
-				<li class="nav-item">
         <a
           class="nav-link <%= pageId === 'profile' ? 'active' : null %>"
           href="/admin/profile"

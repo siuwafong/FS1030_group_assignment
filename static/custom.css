@@ -80,3 +80,11 @@ button {
 h1 {
 	margin-top: 4rem;
 }
+
+tr:hover {
+	background: #ccc;
+}
+
+td > a {
+	text-decoration: none !important;
+}

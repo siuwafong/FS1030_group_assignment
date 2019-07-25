@@ -24,10 +24,5 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "nodemon": "^1.19.0"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "db/books/books.json"
-    ]
   }
 }

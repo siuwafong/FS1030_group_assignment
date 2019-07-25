@@ -24,10 +24,10 @@ module.exports = {
         res.redirect('/');
       }
 
-      res.render('search.ejs', {
+      res.render('patients.ejs', {
         patients: result,
         title: 'EMR Database',
-        pageId: 'search',
+        pageId: 'patients',
         username: req.session.username,
       });
     });
