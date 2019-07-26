@@ -31,6 +31,7 @@ module.exports = {
           pageId: 'profile',
           username: req.session.username,
           healthCardNumber: healthCardNumber,
+          selectedHealthCardNumber: JSON.parse(JSON.stringify(result))[0].health_card_number,
         });
       });
     } else {
