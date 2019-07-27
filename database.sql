@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS fs1030;
+USE fs1030; 
+
 CREATE TABLE IF NOT EXISTS `patients1` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `first_name` mediumtext NOT NULL,
