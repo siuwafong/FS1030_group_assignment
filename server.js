@@ -11,9 +11,9 @@ const defaultErrorHandler = require('./middleware/default-error-handler');
 const app = express();
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
   database: 'fs1030_new',
 });
 
@@ -63,7 +63,7 @@ app.use(defaultErrorHandler);
 
 
 // Start the express server
-const port = 3000;
+const port = process.env.HTTP_PORT;
 app.listen(port, () => {
   console.log(`Express server started on port ${port}.`);
 });
