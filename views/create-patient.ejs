@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<%- include('partials/head'); %>
+	</head>
+	<body>
+
+		<%- include('partials/header'); %>
+
+		 <div class="container">
+
+        <form class="add-patient-form" method="POST" action="/admin/create">
+					<% if (message != '') { %>
+							<p class="text-center text-danger"><%= message %></p>
+					<% } %>
+					<div class="form-row">
+							<div class="form-group col-md-4">
+									<label for="firstName"><b>First Name</b></label>
+									<input type="text" class="form-control" name="firstName" id="first-name" placeholder="First Name" required>
+							</div>
+							<div class="form-group col-md-4">
+									<label for="lastName"><b>Last Name</b></label>
+									<input type="text" class="form-control" name="lastName" id="last-name" placeholder="Last Name" required>
+							</div>
+							<div class="form-group col-md-4">
+									<label for="healthCardNumber"><b>Health Card Number</b></label>
+									<input type="text" class="form-control" name="healthCardNumber" id="health-card-number" placeholder="Health Card Number" >
+							</div>
+					</div>
+					<div class="form-row">
+
+							<div class="form-group col-md-6">
+							<label for="genre"><b>Genre</b></label>
+							<select class="form-control" name="genre" id="genre" >
+								<option>M</option>
+								<option>F</option>
+							</select>
+							</div>
+
+							<div class="form-group col-md-4">
+									<label for="dob"><b>Date of Birth</b></label>
+									<input type="date" class="form-control" name="dob" id="birthDate" >
+							</div>
+
+							<div class="col-md-12">
+									<label for="patient-img"><b>Profile Picture</b></label><br>
+									<input type="file" name="image" id="patient-img" >
+							</div>
+							<button type="submit" class="btn btn-primary float-right">Create Patient</button>
+    			</div>
+				</div>
+
+	</body>
+</html>

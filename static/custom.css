@@ -70,16 +70,23 @@ button {
   z-index: 0;
 }
 
+/* Home page */
 
-:root {
-  --bg-color: radial-gradient(circle at center, #fff, #ccc);
-  --dot-color1:deepskyblue;
-  --dot-color2:#000;
-}
-
-h1 {
+.home > .container > h1 {
 	margin-top: 4rem;
+	color: whitesmoke;
 }
+
+.lead {
+	color: whitesmoke;
+}
+
+.home {
+	background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/A2KqU29/seamless-blue-particle-background-in-4k_41uagba1l__F0000.png") no-repeat center;
+}
+
+
+/* Search patient page */
 
 tr:hover {
 	background: #ccc;
@@ -88,6 +95,46 @@ tr:hover {
 td > a {
 	text-decoration: none !important;
 }
+
+.container-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+.btn-create {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.375rem 0.75rem;
+  margin-top: 1px;
+  margin-bottom: 25px;
+  border: 1px solid;
+  color: white;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.btn-create.inverse {
+	color: #222;
+	background-color: white;
+	border-color: #b7b7b7;
+}
+
+.btn-create.create {
+	color: lightgreen;
+	font-weight: bold;
+}
+
+.btn-create:hover {
+  border-bottom-width: 4px;
+  margin-bottom: 22px;
+}
+
+
+/* Profile page */
 
 .card.main >.card-header {
 	display: flex;
@@ -109,4 +156,14 @@ td > a {
 
 .card.main > .nav-link {
 	color: grey;
+}
+
+/* Create patient form */
+
+.add-patient-form {
+	margin-top: 5rem;
+}
+
+.add-patient-form > .form-row > a > button {
+	margin-top: 2rem;
 }

@@ -1,3 +1,8 @@
+:root {
+  --bg-color: radial-gradient(circle at center, #fff, #ccc);
+  --dot-color1:deepskyblue;
+  --dot-color2:#000;
+}
 
 .dna {
   width: 360px;
