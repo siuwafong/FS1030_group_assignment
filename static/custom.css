@@ -107,6 +107,6 @@ td > a {
 	margin-left: 1rem;
 }
 
-.nav-link {
+.card.main > .nav-link {
 	color: grey;
 }
