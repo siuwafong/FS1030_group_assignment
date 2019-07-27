@@ -41,9 +41,10 @@
 					<div class="col-md-9">
 						<div class="card main">
 							<div class="card-header">
-								<strong>John Doe</strong> <small class="label label-success pull-right"><%= selectedHealthCardNumber %></small>
-                <br/><strong class="heading">DOB: </strong> Apr 24, 1985
-                <button class="btn btn-sm btn-info pull-right">Edit</button>
+								<div class="info">
+									<h4><%= selectedPatient %></h4> <small class="label label-success pull-right"><%= selectedHealthCardNumber %></small>
+								</div>
+                <button class="btn btn-sm btn-info">Edit</button>
 
 							</div>
 							<div class="card-body">
@@ -53,7 +54,7 @@
 										<a class="nav-link active" href="#">Details</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#">Medical Record</a>
+										<a class="nav-link active" href="#">Medical Record</a>
 									</li>
 								</ul>
 								<div class="tab-content">
@@ -61,7 +62,7 @@
 										<tbody>
 											<tr>
 												<td>DOB</td>
-												<td>Apr 24, 1985</td>
+												<td class="dob"><%= selectedBirthDate %></td>
 											</tr>
 											<tr>
 												<td>Genre</td>

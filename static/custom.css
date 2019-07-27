@@ -88,3 +88,25 @@ tr:hover {
 td > a {
 	text-decoration: none !important;
 }
+
+.card.main >.card-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.info {
+	display:flex;
+	flex-direction: row;
+}
+
+.info > small {
+	background-color: #7FFF7F;
+	border-radius: 10%;
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+.nav-link {
+	color: grey;
+}

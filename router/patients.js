@@ -1,14 +1,6 @@
 'use strict';
 
-const mysql = require('mysql');
-
-// this has to be a global variable - to be fixed
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'fs1030_new',
-});
+const connection = require('../connection');
 
 /**
  * Search page
@@ -19,7 +11,7 @@ module.exports = {
     const query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
 
     // execute query
-    db.query(query, (err, result) => {
+    connection.db.query(query, (err, result) => {
       if (err) {
         res.redirect('/');
       }
