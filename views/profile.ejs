@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+	<%- include('partials/head'); %>
+</head>
+
+<body>
+
+	<%- include('partials/header'); %>
+
+
+		<div class="container">
+			<img src="../static/logo.png"/>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="card side">
+						<img src="" class="card-img-top" alt="">
+							<div class="card-body">
+								<h5 class="card-title">Patients</h5>
+								<form action="/admin/profile">
+									<input type="text" class="form-control" placeholder="Search for..." name="healthCardNumber">
+								</form>
+
+								<ul class="list-group list-group-flush">
+									<% patients.forEach((patient, index) => { %>
+
+										<li class="list-group-item">
+											<%= patient.first_name + ' ' + patient.last_name %><span class="badge"><%= patient.health_card_number %></span>
+										</li>
+
+									<% }); %>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<% if (healthCardNumber) { %>
+					<div class="col-md-9">
+						<div class="card main">
+							<div class="card-header">
+								<div class="info">
+									<h4><%= selectedPatient %></h4> <small class="label label-success pull-right"><%= selectedHealthCardNumber %></small>
+								</div>
+                <button class="btn btn-sm btn-info">Edit</button>
+
+							</div>
+							<div class="card-body">
+
+								<ul class="nav nav-tabs">
+									<li class="nav-item">
+										<a class="nav-link active" href="#">Details</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" href="#">Medical Record</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<table class="table table-condensed table-bordered margin-top-10">
+										<tbody>
+											<tr>
+												<td>DOB</td>
+												<td class="dob"><%= selectedBirthDate %></td>
+											</tr>
+											<tr>
+												<td>Genre</td>
+												<td>Male</td>
+											</tr>
+											<tr>
+												<td>Immunization</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Allergy</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<% }; %>
+				</row>
+			</div>
+		</div>
+
+</body>
+
+</body>
+
+</html>

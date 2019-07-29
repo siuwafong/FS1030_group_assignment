@@ -1,0 +1,169 @@
+img {
+	margin-top: 2rem;
+}
+
+.navbar {
+  background-color: #2e4057;
+  color: white;
+}
+
+.navbar h1 {
+  margin-bottom: 0;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item:not(:last-of-type) {
+  margin-right: 1rem;
+}
+
+.nav-link {
+  color: #fff;
+  transition: color .2s linear;
+}
+
+.nav-link:hover {
+  color: #ccc;
+}
+
+.nav-link.active {
+  opacity: .6;
+  color: #aaa;
+}
+
+.navbar-authenticated {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-authenticated a {
+  margin-left: 1rem;
+}
+
+.navbar-greeting {
+  margin-bottom: 0;
+}
+
+.navbar-greeting-username {
+  font-style: italic;
+}
+
+button {
+	text-transform: capitalize;
+}
+
+.form-inline {
+	margin-top: 0.5rem;
+}
+
+.crud {
+	margin-top: 1rem;
+}
+
+.background {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Home page */
+
+.home > .container > h1 {
+	margin-top: 4rem;
+	color: whitesmoke;
+}
+
+.lead {
+	color: whitesmoke;
+}
+
+.home {
+	background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/A2KqU29/seamless-blue-particle-background-in-4k_41uagba1l__F0000.png") no-repeat center;
+}
+
+
+/* Search patient page */
+
+tr:hover {
+	background: #ccc;
+}
+
+td > a {
+	text-decoration: none !important;
+}
+
+.container-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+.btn-create {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.375rem 0.75rem;
+  margin-top: 1px;
+  margin-bottom: 25px;
+  border: 1px solid;
+  color: white;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.btn-create.inverse {
+	color: #222;
+	background-color: white;
+	border-color: #b7b7b7;
+}
+
+.btn-create.create {
+	color: lightgreen;
+	font-weight: bold;
+}
+
+.btn-create:hover {
+  border-bottom-width: 4px;
+  margin-bottom: 22px;
+}
+
+
+/* Profile page */
+
+.card.main >.card-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.info {
+	display:flex;
+	flex-direction: row;
+}
+
+.info > small {
+	background-color: #7FFF7F;
+	border-radius: 10%;
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+.card.main > .nav-link {
+	color: grey;
+}
+
+/* Create patient form */
+
+.add-patient-form {
+	margin-top: 5rem;
+}
+
+.add-patient-form > .form-row > a > button {
+	margin-top: 2rem;
+}

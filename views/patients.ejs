@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<%- include('partials/head'); %>
+	</head>
+	<body>
+
+		<%- include('partials/header'); %>
+
+		<main>
+			<section class="container">
+			<div class="container-form">
+				<form class="form-inline" action="/admin/patients">
+					<label for="id">Health Card Number</label>
+					<div class="form-group mx-sm-3 mb-2">
+						<input type="text" class="form-control" placeholder="Health Card Number" name="healthCardNumber" />
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">Search</button>
+				</form>
+				<form class="form-inline" action="/admin/create">
+					<button type="submit" class="btn-create create inverse">Create Patient</button>
+				</form>
+			</div>
+
+			<table class="table patients">
+				<thead>
+					<tr>
+						<th>Health Card Number</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% patients.forEach((patient, index) => { %>
+						<tr>
+							<td><a href="profile?healthCardNumber=<%= patient.health_card_number %>"><%= patient.health_card_number %></a></td>
+							<td><%= patient.first_name %></td>
+							<td><%= patient.last_name %></td>
+							<td><%= patient.age %></td>
+						</tr>
+					<% }); %>
+				</tbody>
+
+			</table>
+
+	</body>
+</html>

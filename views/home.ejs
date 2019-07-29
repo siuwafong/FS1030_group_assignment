@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<%- include('partials/head'); %>
+	</head>
+	<body class="home">
+
+		<%- include('partials/header'); %>
+
+    <div class="container" style="display:flex; align-items: center; flex-direction: column">
+
+			<h1>MediSquare</h1>
+
+			<div class="dna">
+				<% for (var i = 0; i < 20; i++) { %>
+					<div class="ele"></div>
+				<% } %>
+			</div>
+
+      <p class="lead">
+        Only authorized users may lookup for patients.
+      </p>
+    </div>
+
+  </body>
+
+	</body>
+</html>
