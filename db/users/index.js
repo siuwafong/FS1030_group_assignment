@@ -1,96 +1,111 @@
 'use strict';
 
-const util = require('util');
-const path = require('path');
-const fs = require('fs');
+const connection = require('../../connection');
+
+const db = connection.db;
 
 
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
-
-const userDbPath = path.resolve('db/users/users.json');
-
-
-/**
- * Reads the file `users.json` and parses its JSON
- */
-function readUsers() {
-  return readFile(userDbPath)
-    .then((json) => {
-      return JSON.parse(json);
-    });
+async function getUsers() {
+  const qryStrSelectAllUsers = 'SELECT * FROM users';
+  return db.query(qryStrSelectAllUsers, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
 }
 
 
-/**
- * Writes to the `users.json` file
- */
-function writeUsers(users) {
-  return writeFile(userDbPath, JSON.stringify(users, null, 2));
+async function getUsersByName(username) {
+  const qryStrSelectAllUsers = `SELECT username FROM users WHERE username = "${username}"`;
+  return db.query(qryStrSelectAllUsers, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
+}
+
+async function getUserPasswordHash(username) {
+  const qryStrSelectUserPasswordHash = `SELECT password FROM users WHERE username = "${username}"`;
+  return db.query(qryStrSelectUserPasswordHash, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
+}
+
+async function usernameExists(username) {
+  const resultUserName = await getUsersByName(username);
+  return !!resultUserName;
 }
 
 
-/**
- * Determines if a user with a particular username already exists or not
- * @param {string} username
- * @returns {Promise<boolean>} whether a user exists or not
- */
-function usernameExists(username) {
-  return readUsers()
-    .then((users) => {
-      let exists = false;
-
-      users.forEach((user) => {
-        if (user.username === username) {
-          exists = true;
-        }
-      });
-
-      return exists;
-    });
+async function getUsersById(id) {
+  const qryStrSelectUserByID = `SELECT username FROM users WHERE id = "${id}"`;
+  return db.query(qryStrSelectUserByID, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
 }
 
 
-/**
- * Adds a user to the database
- * @param {object} user
- * @returns {Promise<undefined>}
- */
-function addUser(user) {
-  return readUsers()
-    .then((users) => {
-      return writeUsers(users.concat(user));
-    });
+async function createUser(user) {
+  const qryStrNewUser = `INSERT INTO users (username,password) VALUES "${user}"`;
+  return db.query(qryStrNewUser, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
 }
 
 
-/**
- * Get user password hash
- * @param {string} username
- * @returns {Promise<string>}
- */
-function getUserPasswordHash(username) {
-  return readUsers()
-    .then((users) => {
-      let match;
+async function userupdateUserById(id, user) {
+  const qryUpdateUser = `UPDATE users SET username="${user}" WHERE id ="${id}"`;
+  return db.query(qryUpdateUser, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
+}
 
-      users.forEach((user) => {
-        if (user.username === username) {
-          match = user;
-        }
-      });
+async function updateUserPassword(username, password) {
+  const qryUpdateUser = `UPDATE users SET password="${password}" WHERE username ="${username}"`;
+  return db.query(qryUpdateUser, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
+}
 
-      if (!match) {
-        throw new Error('User does not exist.');
-      }
 
-      return match.password;
-    });
+async function removeUserByName(username) {
+  const qryStrNewUser = `DELETE FROM users WHERE username ="${username}"`;
+  return db.query(qryStrNewUser, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
+}
+
+async function removeUserById(id) {
+  const qryStrRemoveUser = `DELETE FROM users WHERE id ="${id}"`;
+  return db.query(qryStrRemoveUser, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    return result;
+  });
 }
 
 
 module.exports = {
-  usernameExists: usernameExists,
-  addUser: addUser,
-  getUserPasswordHash: getUserPasswordHash,
+  getUsers,
+  getUsersById,
+  createUser,
+  userupdateUserById,
+  removeUserById,
+  getUsersByName,
+  removeUserByName,
+  updateUserPassword,
+  usernameExists,
+  getUserPasswordHash,
 };
