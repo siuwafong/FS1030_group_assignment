@@ -22,6 +22,10 @@ module.exports = {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const date = new Date(JSON.parse(JSON.stringify(result))[0].dob);
         const dob = date.toLocaleDateString('en-US', options);
+        const gender =  JSON.parse(JSON.stringify(result))[0].gender;
+        const email = JSON.parse(JSON.stringify(result))[0].email;
+        const address = JSON.parse(JSON.stringify(result))[0].address;
+        const phone = JSON.parse(JSON.stringify(result))[0].phone;
 
         res.render('profile.ejs', {
           patients: result,
@@ -32,6 +36,10 @@ module.exports = {
           selectedPatient: patientName,
           selectedHealthCardNumber: JSON.parse(JSON.stringify(result))[0].health_card_number,
           selectedBirthDate: dob,
+          selectedGender: gender,
+          selectedEmail: email,
+          selectedAddress: address,
+          selectedPhone: phone,
         });
       });
     } else {
