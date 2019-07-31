@@ -7,3 +7,7 @@ img {
 	margin-right: 2rem;
 }
 
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+	opacity: 1;
+}
