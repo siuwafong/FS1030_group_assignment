@@ -42,6 +42,26 @@ module.exports = {
           selectedPhone: phone,
         });
       });
+
+
+      const queryRecord = "SELECT * FROM `medical_record` WHERE health_card_number LIKE '%" + String(healthCardNumber) + "%' ORDER BY health_card_number ASC";
+
+      connection.db.query(queryRecord, (err, result) => {
+        if (err) {
+          res.redirect('/');
+        }
+
+        const record = JSON.parse(JSON.stringify(result))[0].record_type;
+
+
+        res.render('profile.ejs', {
+          patients: result,
+          title: 'EMR Database',
+          pageId: 'record',
+          username: req.session.username,
+          selectedRecord: record,
+        });
+      });
     } else {
       const query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
       // execute query
@@ -58,9 +78,7 @@ module.exports = {
           healthCardNumber: healthCardNumber,
         });
       });
-
     }
-
   },
 
 
