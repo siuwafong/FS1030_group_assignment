@@ -51,15 +51,18 @@
 
 								<ul class="nav nav-tabs">
 									<li class="nav-item active">
-										<a class="nav-link active">Details</a>
+										<a class="nav-link active" href="profile?healthCardNumber=<%= selectedHealthCardNumber %>">Details</a>
 									</li>
 
 
 									<li class="nav-item">
-										<a class="nav-link active">Medical Record</a>
+										<a class="nav-link active" href="record?healthCardNumber=<%= selectedHealthCardNumber %>">Medical Record</a>
 									</li>
 								</ul>
+
+
 								<div class="tab-content">
+								<% if (pageId === 'profile') { %>
 									<table class="table table-condensed table-bordered margin-top-10">
 										<tbody>
 											<tr>
@@ -85,17 +88,18 @@
 										</tbody>
 									</table>
 
-								<div class="tab-content">
+								<% } else { %>
+
 										<table class="table table-condensed table-bordered margin-top-10">
 											<tbody>
 												<tr>
 													<td>Immunology</td>
-													<td class="immunology">Immunology</td>
+													<td class="immunology"><%= selectedRecord %></td>
 												</tr>
 											</tbody>
 										</table>
+										<% }; %>
 								</div>
-
 							</div>
 						</div>
 					</div>

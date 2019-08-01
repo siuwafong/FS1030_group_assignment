@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS fs1030;
-USE fs1030; 
+USE fs1030;
 
--- create patients table 
+-- create patients table
 CREATE TABLE IF NOT EXISTS `patients` (
  -- `id` int(5) NOT NULL AUTO_INCREMENT,
   `first_name` mediumtext NOT NULL,
@@ -40,6 +40,12 @@ insert into patients (first_name, last_name, health_card_number, dob, gender, em
   PRIMARY KEY (`health_card_number`),
   FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+INSERT INTO
+medical_record (health_card_number, record_type)
+VALUES
+('818-77-5491','Immunology');
+
 
 -- create users table for login
 CREATE TABLE IF NOT EXISTS `users` (
