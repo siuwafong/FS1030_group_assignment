@@ -59,6 +59,7 @@ module.exports = {
           title: 'EMR Database',
           pageId: 'record',
           username: req.session.username,
+          healthCardNumber: healthCardNumber,
           selectedRecord: record,
         });
       });
