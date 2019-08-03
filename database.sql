@@ -33,19 +33,23 @@ insert into patients (first_name, last_name, health_card_number, dob, gender, em
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Brunhilda', 'Rimmington', '189-87-0156', '1982-08-13', 'Female', 'brimmingtonf@intel.com', '138 Loftsgordon Street', '(575) 3054297');
 
 -- create medical record table
- CREATE TABLE IF NOT EXISTS `medical_record` (
+ CREATE TABLE IF NOT EXISTS `vitals` (
   -- `id` int(5) NOT NULL AUTO_INCREMENT,
   `health_card_number` varchar(11) NOT NULL,
-  `record_type` varchar(20) NOT NULL,
+  `body_weight` varchar(20) NOT NULL,
+	`body_height` varchar(20) NOT NULL,
+	`record_date` DATE NOT NULL,
   PRIMARY KEY (`health_card_number`),
   FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 INSERT INTO
-medical_record (health_card_number, record_type)
+vitals (health_card_number, body_weight, body_height, record_date)
 VALUES
-('818-77-5491','Immunology');
-
+('818-77-5491', 132, 6, '1982-08-13'),
+('849-50-0746', 180, 6.2, '1982-08-13'),
+('617-87-2587', 145, 6, '1982-08-13'),
+('528-90-9719', 138, 6, '1982-08-13');
 
 -- create users table for login
 CREATE TABLE IF NOT EXISTS `users` (
