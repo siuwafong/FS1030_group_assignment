@@ -18,10 +18,10 @@ module.exports = {
           res.redirect('/');
         }
 
-        console.log(result[0]);
 
         const height = JSON.parse(JSON.stringify(result))[0].body_height;
         const weight = JSON.parse(JSON.stringify(result))[0].body_weight;
+        const bmi = Math.round((weight * 0.4535 / ((height * 0.3048) ** 2)) * 100) / 100;
         const patientName = JSON.parse(JSON.stringify(result))[0].first_name + ' ' + JSON.parse(JSON.stringify(result))[0].last_name;
 
         res.render('profile.ejs', {
@@ -34,6 +34,7 @@ module.exports = {
           selectedPatient: patientName,
           selectedHeight: height,
           selectedWeight: weight,
+          selectedBmi: bmi,
         });
       });
     } else {

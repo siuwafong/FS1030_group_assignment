@@ -97,7 +97,7 @@
 												<ul class="list-group list-group-flush">
 													<li class="list-group-item"><h6>Height</h6><%= selectedHeight %></li>
 													<li class="list-group-item"><h6>Weight</h6><%= selectedWeight %></li>
-													<li class="list-group-item"><h6>BMI</h6> N/A</li>
+													<li class="list-group-item <%= parseInt(selectedBmi) >= 25 ? 'overweight' : null %>"><h6>BMI <% if(parseInt(selectedBmi) >= 25) { %><i class="fa fa-exclamation-triangle"></i><%} %></h6><%= selectedBmi %></li>
 												</ul>
 
 												<%/* BMI thresholds
