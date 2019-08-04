@@ -1,9 +1,5 @@
 /* Nav bar */
 
-img {
-	margin-top: 2rem;
-}
-
 .navbar {
   background-color: #2e4057;
   color: white;
@@ -33,6 +29,11 @@ img {
 .nav-link.active {
   opacity: .6;
   color: #aaa;
+}
+
+.nav-link.profile {
+	color: #2e4057;
+  display: none;
 }
 
 .navbar-authenticated {
