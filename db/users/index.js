@@ -19,6 +19,7 @@ async function getUsersByName(username) {
   const qryStrSelectAllUsers = `SELECT username FROM users WHERE username = "${username}"`;
   return db.query(qryStrSelectAllUsers, (err, result) => {
     if (err) throw err;
+    console.log("getUsersByName:");
     console.log(result);
     return result;
   });
@@ -34,8 +35,12 @@ async function getUserPasswordHash(username) {
 }
 
 async function usernameExists(username) {
+  console.log("resultUsername in Usernae Exists:");
   const resultUserName = await getUsersByName(username);
-  return !!resultUserName;
+  console.log("-----------------------------")
+  console.log(resultUserName.length);
+  console.log("-----------------------------")
+  return resultUserName > 0;
 }
 
 
@@ -49,8 +54,9 @@ async function getUsersById(id) {
 }
 
 
-async function createUser(user) {
-  const qryStrNewUser = `INSERT INTO users (username,password) VALUES "${user}"`;
+async function addUser(user) {
+  const qryStrNewUser = `INSERT INTO users (username,password) VALUES ("${user.username}", "${user.password}")`;
+  console.log(qryStrNewUser);
   return db.query(qryStrNewUser, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -100,7 +106,7 @@ async function removeUserById(id) {
 module.exports = {
   getUsers,
   getUsersById,
-  createUser,
+  addUser,
   userupdateUserById,
   removeUserById,
   getUsersByName,

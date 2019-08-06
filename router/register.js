@@ -24,11 +24,14 @@ function postRegisterRoute(req, res, next) {
   // First we check if the username provided already exists
   db.usernameExists(req.body.username)
     .then(async (usernameExists) => {
+      console.log("checking if username Exist");
+      console.log(usernameExists);
       // Check if form values are valid
       const formErrors = {
         username: (!usernameExists && req.body.username) ? null : 'Invalid username',
         password: (req.body.password && req.body.password.length >= 6) ? null : 'Invalid password',
       };
+      console.log(formErrors);
       console.log('post register route');
       // If there are any errors do not register the user
       if (formErrors.username || formErrors.password) {
@@ -50,7 +53,7 @@ function postRegisterRoute(req, res, next) {
         // If successful should redirect to `/login`
         try {
           const hash = await argon2.hash(req.body.password);
-          db.addUser({
+          await db.addUser({
             username: req.body.username,
             password: hash,
           });
