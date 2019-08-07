@@ -19,9 +19,8 @@ async function getUsersByName(username) {
   const qryStrSelectAllUsers = `SELECT username FROM users WHERE username = "${username}"`;
   return db.query(qryStrSelectAllUsers, (err, result) => {
     if (err) throw err;
-    console.log("getUsersByName:");
     console.log(result);
-    return result;
+    return result[0].password;
   });
 }
 
@@ -34,15 +33,23 @@ async function getUserPasswordHash(username) {
   });
 }
 
-async function usernameExists(username) {
-  console.log("resultUsername in Usernae Exists:");
-  const resultUserName = await getUsersByName(username);
-  console.log("-----------------------------")
-  console.log(resultUserName.length);
-  console.log("-----------------------------")
-  return resultUserName > 0;
+async function countUserNames(username, callback) {
+  const qryUserNameExist = `select count(username) as UsersCount from users where username = '${username}'`;
+  // const resultUserName = await getUsersByName(username);
+  return db.query(qryUserNameExist, (err, result) => {
+    if (err) throw err;
+    return callback(result[0].UsersCount);
+  });
 }
 
+async function usernameExists(username, callback) {
+  const qryUserNameExist = `select count(username) as UsersCount from users where username = '${username}'`;
+  // const resultUserName = await getUsersByName(username);
+  return db.query(qryUserNameExist, (err, result) => {
+    if (err) throw err;
+    return callback(result[0].UsersCount > 0 );
+  });
+}
 
 async function getUsersById(id) {
   const qryStrSelectUserByID = `SELECT username FROM users WHERE id = "${id}"`;
@@ -114,4 +121,5 @@ module.exports = {
   updateUserPassword,
   usernameExists,
   getUserPasswordHash,
+  countUserNames,
 };

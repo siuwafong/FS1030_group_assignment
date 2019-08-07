@@ -2,6 +2,7 @@
 
 const argon2 = require('argon2');
 const db = require('../db/users');
+const connection = require('../connection');
 
 
 /**
@@ -22,21 +23,25 @@ function getLoginRoute(req, res) {
  * Form submission
  */
 function postLoginRoute(req, res, next) {
-  db.usernameExists(req.body.username)
+  const qryUserNameExist = `select count(username) as UsersCount from users where username = '${req.body.username}'`;
+  // const resultUserName = await getUsersByName(username);
+  connection.db.query(qryUserNameExist, (err, result) => {
+    if (err) throw err;
+    const usernameExists = result[0].UsersCount > 0;
+    // Login is not valid if username does not exist
+    if (!usernameExists) {
+      console.log('username does not exist');
+      return false;
+    // If the username exists verify the password is correct
+    }
+    console.log('username exist');
+    const qryStrSelectUserPasswordHash = `SELECT password FROM users WHERE username = "${req.body.username}"`;
+    return connection.db.query(qryStrSelectUserPasswordHash, (err, result) => {
+      if (err) throw err;
+      console.log(result);
 
-    // Validate
-    .then((usernameExists) => {
-      // Login is not valid if username does not exist
-      if (!usernameExists) {
-        return false;
-      // If the username exists verify the password is correct
-      }
-      return db.getUserPasswordHash(req.body.username)
-        .then(dbHash => argon2.verify(dbHash, req.body.password));
-    })
-
-    // Render on failure or log user in
-    .then((isValid) => {
+      const dbHash = result[0].password;
+      const isValid = argon2.verify(dbHash, req.body.password);
       // If invalid respond with authentication failure
       if (!isValid) {
         res
@@ -57,8 +62,8 @@ function postLoginRoute(req, res, next) {
         req.session.username = req.body.username;
         res.redirect('/');
       }
-    })
-    .catch(next);
+    });
+  });
 }
 
 
