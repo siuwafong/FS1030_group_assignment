@@ -31,6 +31,18 @@ function postLoginRoute(req, res, next) {
     // Login is not valid if username does not exist
     if (!usernameExists) {
       console.log('username does not exist');
+      res
+        .status(401)
+        .render('login', {
+          pageId: 'login',
+          title: 'Login',
+          username: req.session.username,
+          formError: 'Authentication failed.',
+          formValues: {
+            username: req.body.username || null,
+            password: req.body.password || null,
+          },
+        });
       return false;
     // If the username exists verify the password is correct
     }

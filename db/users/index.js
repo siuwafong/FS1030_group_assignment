@@ -9,7 +9,6 @@ async function getUsers() {
   const qryStrSelectAllUsers = 'SELECT * FROM users';
   return db.query(qryStrSelectAllUsers, (err, result) => {
     if (err) throw err;
-    console.log(result);
     return result;
   });
 }
