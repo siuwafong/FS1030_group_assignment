@@ -32,20 +32,82 @@ insert into patients (first_name, last_name, health_card_number, dob, gender, em
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Tabor', 'Hauch', '323-19-6759', '1948-07-07', 'Male', 'thauche@dot.gov', '8 Melody Terrace', '(697) 5901438');
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Brunhilda', 'Rimmington', '189-87-0156', '1982-08-13', 'Female', 'brimmingtonf@intel.com', '138 Loftsgordon Street', '(575) 3054297');
 
--- create medical record table
- CREATE TABLE IF NOT EXISTS `medical_record` (
+-- create patients table
+CREATE TABLE IF NOT EXISTS `practicians` (
+ -- `id` int(5) NOT NULL AUTO_INCREMENT,
+ `username` varchar(20) NOT NULL,
+ `first_name` varchar(20) NOT NULL,
+ `last_name` varchar(20) NOT NULL,
+ `city` mediumtext NOT NULL,
+ `email` mediumtext NOT NULL,
+ `phone` varchar(13) NOT NULL,
+ PRIMARY KEY (`username`),
+ INDEX (`first_name`),
+ INDEX (`last_name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+insert into practicians (username, first_name, last_name, city, email, phone) values ('sfeatherbie', 'Sarah', 'Featherbie', 'Hamilton', 'sfeatherbie@me.com', '(535) 2840992');
+insert into practicians (username, first_name, last_name, city, email, phone) values ('smackenzie', 'Steve', 'Mackenzie', 'North York', 'smackenzie@me.com', '(647) 2840992');
+
+-- create vitals table
+ CREATE TABLE IF NOT EXISTS `vitals` (
   -- `id` int(5) NOT NULL AUTO_INCREMENT,
   `health_card_number` varchar(11) NOT NULL,
-  `record_type` varchar(20) NOT NULL,
+  `body_weight` varchar(20) NOT NULL,
+	`body_height` varchar(20) NOT NULL,
+	`record_date` DATE NOT NULL,
   PRIMARY KEY (`health_card_number`),
   FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 INSERT INTO
-medical_record (health_card_number, record_type)
+vitals (health_card_number, body_weight, body_height, record_date)
 VALUES
-('818-77-5491','Immunology');
+('818-77-5491', 132, 6, '2018-04-13'),
+('849-50-0746', 220, 6.2, '2019-08-13'),
+('617-87-2587', 145, 6, '2019-08-13'),
+('528-90-9719', 138, 6, '2018-08-13');
 
+-- create immunology table
+ CREATE TABLE IF NOT EXISTS `immunology` (
+  -- `id` int(5) NOT NULL AUTO_INCREMENT,
+  `health_card_number` varchar(11) NOT NULL,
+  `immunology_type` varchar(20) NOT NULL,
+  `doses` INT(2) NOT NULL,
+  `record_date` DATE NOT NULL,
+  PRIMARY KEY (`health_card_number`, `immunology_type`, `record_date`),
+  FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+INSERT INTO
+immunology (health_card_number, immunology_type, doses, record_date)
+VALUES
+('818-77-5491', 'Measles', 2, '1986-08-13'),
+('849-50-0746', 'Pertussis', 1, '1990-08-13'),
+('849-50-0746', 'Diphteria', 1, '1990-08-13'),
+('617-87-2587', 'Polio', 2, '2000-08-13'),
+('528-90-9719', 'Diphteria', 1, '1986-08-13');
+
+-- create history_exam table
+ CREATE TABLE IF NOT EXISTS `history_visit` (
+  -- `id` int(5) NOT NULL AUTO_INCREMENT,
+  `health_card_number` varchar(11) NOT NULL,
+  `visit_date` DATE NOT NULL,
+	`practician_first_name` varchar(20) NOT NULL,
+  `practician_last_name` varchar(20) NOT NULL,
+	`note` longtext,
+  PRIMARY KEY (`health_card_number`, `visit_date`),
+  FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`),
+	FOREIGN KEY (`practician_first_name`) REFERENCES practicians(`first_name`),
+	FOREIGN KEY (`practician_last_name`) REFERENCES practicians(`last_name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+INSERT INTO
+history_visit (health_card_number, visit_date, practician_first_name, practician_last_name, note)
+VALUES
+('818-77-5491', '2018-04-13', 'Sarah', 'Featherbie', 'Check-up. Nothing to report.'),
+('849-50-0746', '2019-08-13', 'Steve', 'Mackenzie', NULL),
+('849-50-0746', '2019-05-13', 'Steve', 'Mackenzie', 'Routine follow up. Patient complains about stomach pain. Overweight to report.  Sub optimal sugar, control with retinopathy and neuropathy, high glucometer readings. Will work harder on diet. Will increase insulin by 2 units.');
 
 -- create users table for login
 CREATE TABLE IF NOT EXISTS `users` (

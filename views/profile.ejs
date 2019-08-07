@@ -9,40 +9,16 @@
 
 	<%- include('partials/header'); %>
 
-
-		<div class="container">
-			<img src="../static/logo.png"/>
-		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="card side">
-						<img src="" class="card-img-top" alt="">
-							<div class="card-body">
-								<h5 class="card-title">Patients</h5>
-								<form action="/admin/profile">
-									<input type="text" class="form-control" placeholder="Search for..." name="healthCardNumber">
-								</form>
 
-								<ul class="list-group list-group-flush">
-									<% patients.forEach((patient, index) => { %>
-
-										<li class="list-group-item">
-											<%= patient.first_name + ' ' + patient.last_name %><span class="badge"><%= patient.health_card_number %></span>
-										</li>
-
-									<% }); %>
-								</ul>
-							</div>
-						</div>
-					</div>
 
 					<% if (healthCardNumber) { %>
-					<div class="col-md-9">
+					<div class="col-md-12">
 						<div class="card main">
 							<div class="card-header">
 								<div class="info">
-									<h4><%= selectedPatient %></h4> <small class="label label-success pull-right"><%= selectedHealthCardNumber %></small>
+									<h4><%= selectedPatient %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= selectedHealthCardNumber %></h4>
 								</div>
                 <button class="btn btn-sm btn-info">Edit</button>
 
@@ -57,6 +33,10 @@
 
 									<li class="nav-item">
 										<a class="nav-link active" href="record?healthCardNumber=<%= selectedHealthCardNumber %>">Medical Record</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link active" href="history?healthCardNumber=<%= selectedHealthCardNumber %>">Visits</a>
 									</li>
 								</ul>
 
@@ -88,16 +68,85 @@
 										</tbody>
 									</table>
 
-								<% } else { %>
+								<% } else if (pageId === 'record') { %>
 
-										<table class="table table-condensed table-bordered margin-top-10">
-											<tbody>
-												<tr>
-													<td>Immunology</td>
-													<td class="immunology"><%= selectedRecord %></td>
-												</tr>
-											</tbody>
-										</table>
+										<div class="col-sm-4">
+											<div class="card border-primary mb-4 record-card">
+												<div class="card-header">
+												Vitals
+												</div>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item"><h6>Height</h6><%= selectedHeight %></li>
+													<li class="list-group-item"><h6>Weight</h6><%= selectedWeight %></li>
+													<li class="list-group-item <%= parseInt(selectedBmi) >= 25 ? 'overweight' : null %>"><h6>BMI <% if(parseInt(selectedBmi) >= 25) { %><i class="fa fa-exclamation-triangle"></i><%} %></h6><%= selectedBmi %></li>
+												</ul>
+
+												<%/* BMI thresholds
+
+														Underweight = <18.5
+														Normal weight = 18.5–24.9
+														Overweight = 25–29.9
+														Obesity = BMI of 30 or greater  */%>
+
+											</div>
+										</div>
+
+
+
+											<div class="col-sm-4">
+											<div class="card border-primary mb-4 record-card">
+												<div class="card-header">
+												Immunology
+												</div>
+												<div class="card-body">
+													<ul class="list-group list-group-flush">
+														<% patients.forEach((patient, index) => { %>
+
+														<li class="list-group-item">
+															<%= patient.immunology_type %>
+														</li>
+														<% }); %>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+
+								<% } else  { %>
+
+
+
+									<div class="col-sm-12">
+										<div class="card border-primary mb-4 record-card">
+											<div class="card-header">
+											Visits
+											</div>
+											<div class="card-body">
+
+													<table class="table table-condensed table-bordered margin-top-10">
+														<thead>
+															<tr>
+																<th>Visit Date</th>
+																<th>Practician</th>
+																<th>Note</th>
+															</tr>
+														</thead>
+														<tbody>
+															<% patients.forEach((patient, index) => { %>
+																<tr>
+																	<td class="dob"><%=  new Date(patient.visit_date).toLocaleDateString('en-US') %></td>
+																	<td>Dr.&nbsp;<%= patient.practician_last_name %></td>
+																	<td><%= patient.note %></td>
+																</tr>
+														</tbody>
+													<% }); %>
+
+											</div>
+										</div>
+									</div>
+
+
+
 										<% }; %>
 								</div>
 							</div>
