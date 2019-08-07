@@ -10,6 +10,7 @@ const logoutRoutes = require('./logout');
 const registerRoutes = require('./register');
 const { getProfileRoute } = require('./profile');
 const { getRecordRoute } = require('./record');
+const { getHistoryRoute } = require('./history');
 const { getCreatePatientRoute, postCreatePatientRoute } = require('./create-patient');
 
 
@@ -26,6 +27,7 @@ router.get('/admin/patients', getSearchRoute);
 // Profile page
 router.get('/admin/profile', getProfileRoute);
 router.get('/admin/record', getRecordRoute);
+router.get('/admin/history', getHistoryRoute);
 
 // Create patient page
 router.get('/admin/create', getCreatePatientRoute);
