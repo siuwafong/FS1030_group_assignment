@@ -49,10 +49,6 @@ function postRegisterRoute(req, res, next) {
         });
     // Else, the form values are valid
     } else {
-<<<<<<< HEAD
-      // TODO: Hash the password and call `db.addUser(newUser)`
-=======
->>>>>>> 2a8e9ab47f7f7e9185c4c3dc7e95eaf69ba74177
       // If successful should redirect to `/login`
       try {
         const hash = argon2.hash(req.body.password);
