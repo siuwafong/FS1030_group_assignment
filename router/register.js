@@ -2,6 +2,7 @@
 
 const argon2 = require('argon2');
 const db = require('../db/users');
+const connection = require('../connection');
 
 /**
  * Initial page rendering
@@ -21,46 +22,46 @@ function getRegisterRoute(req, res) {
  * Form submission
  */
 function postRegisterRoute(req, res, next) {
-  // First we check if the username provided already exists
-  db.usernameExists(req.body.username)
-    .then(async (usernameExists) => {
-      // Check if form values are valid
-      const formErrors = {
-        username: (!usernameExists && req.body.username) ? null : 'Invalid username',
-        password: (req.body.password && req.body.password.length >= 6) ? null : 'Invalid password',
-      };
-      console.log('post register route');
-      // If there are any errors do not register the user
-      if (formErrors.username || formErrors.password) {
-        res
-          .status(400)
-          .render('register', {
-            pageId: 'register',
-            title: 'Register',
-            username: req.session.username,
-            formErrors: formErrors,
-            formValues: {
-              username: req.body.username,
-              password: req.body.password,
-            },
-          });
-      // Else, the form values are valid
-      } else {
-        // TODO: Hash the password and call `db.addUser(newUser)`
-        // If successful should redirect to `/login`
-        try {
-          const hash = await argon2.hash(req.body.password);
-          db.addUser({
+  const qryUserNameExist = `select count(username) as UsersCount from users where username = '${req.body.username}'`;
+  // const resultUserName = await getUsersByName(username);
+  connection.db.query(qryUserNameExist, (err, result) => {
+    if (err) throw err;
+    const usernameExists = result[0].UsersCount > 0;
+    // Check if form values are valid
+    const formErrors = {
+      username: (!usernameExists && req.body.username) ? null : 'Invalid username',
+      password: (req.body.password && req.body.password.length >= 6) ? null : 'Invalid password',
+    };
+
+    // If there are any errors do not register the user
+    if (formErrors.username || formErrors.password) {
+      res
+        .status(400)
+        .render('register', {
+          pageId: 'register',
+          title: 'Register',
+          username: req.session.username,
+          formErrors: formErrors,
+          formValues: {
             username: req.body.username,
-            password: hash,
-          });
-          res.redirect('/login');
-        } catch (err) {
-          console.log(err);
-        }
+            password: req.body.password,
+          },
+        });
+    // Else, the form values are valid
+    } else {
+      // If successful should redirect to `/login`
+      try {
+        const hash = argon2.hash(req.body.password);
+        db.addUser({
+          username: req.body.username,
+          password: hash,
+        });
+        res.redirect('/login');
+      } catch (err) {
+        //...
       }
-    })
-    .catch(next);
+    }
+  });
 }
 
 
