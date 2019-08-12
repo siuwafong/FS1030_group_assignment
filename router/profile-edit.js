@@ -49,7 +49,7 @@ function postProfileEditRoute(req, res, next) {
 
   // grab data
   const inHealthCardNumber = req.body.healthCardNumber;
-  const inDOB = formatDate(req.body.DOB);
+  let inDOB = req.body.DOB;
   const inGender = req.body.Gender;
   const inEmail = req.body.Email;
   const inAddress = req.body.Address;
@@ -57,18 +57,18 @@ function postProfileEditRoute(req, res, next) {
   const inPatient = req.body.Patient;
   const inAction = req.body.Action;
 
-
-  console.log(inHealthCardNumber);
-  console.log(inDOB);
-  console.log(inGender);
-  console.log(inEmail);
-  console.log(inAddress);
-  console.log(inPhone);
-  console.log(inPatient);
-  console.log(inAction);
-
   if (inAction === 'Edit') {
+    inDOB = formatDate(req.body.DOB);
     console.log('render edit');
+    console.log(inHealthCardNumber);
+    console.log(inDOB);
+    console.log(inGender);
+    console.log(inEmail);
+    console.log(inAddress);
+    console.log(inPhone);
+    console.log(inPatient);
+    console.log(inAction);
+
     // render profile-edit
     res.render('profile-edit', {
       title: 'MediSquare | Edit Patient Info',
@@ -86,7 +86,14 @@ function postProfileEditRoute(req, res, next) {
     }); // end render
   } else {
     console.log('render save');
-    
+    console.log(inHealthCardNumber);
+    console.log(inDOB);
+    console.log(inGender);
+    console.log(inEmail);
+    console.log(inAddress);
+    console.log(inPhone);
+    console.log(inPatient);
+    console.log(inAction);
     // prepare SQL string
     const updatePatientSQLStr = `UPDATE patients 
                                  SET dob='${inDOB}',
