@@ -58,6 +58,7 @@ function postProfileEditRoute(req, res, next) {
   const inAction = req.body.Action;
 
   if (inAction === 'Edit') {
+    // have to formate date for display
     inDOB = formatDate(req.body.DOB);
     console.log('render edit');
     console.log(inHealthCardNumber);
