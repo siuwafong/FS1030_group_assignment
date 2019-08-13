@@ -12,7 +12,7 @@ const { getProfileRoute } = require('./profile');
 const { getRecordRoute } = require('./record');
 const { getHistoryRoute } = require('./history');
 const { getCreatePatientRoute, postCreatePatientRoute } = require('./create-patient');
-
+const profileEditRoutes = require('./profile-edit');
 
 /**
  * Define routes
@@ -44,5 +44,8 @@ router.get('/logout', logoutRoutes.get);
 router.get('/register', registerRoutes.get);
 router.post('/register', registerRoutes.post);
 
+// profile edit page
+router.get('/admin/profile-edit', profileEditRoutes.get);
+router.post('/admin/profile-edit', profileEditRoutes.post);
 
 module.exports = router;
