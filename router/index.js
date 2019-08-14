@@ -45,7 +45,7 @@ router.get('/register', registerRoutes.get);
 router.post('/register', registerRoutes.post);
 
 // profile edit page
-router.get('/admin/profile-edit', profileEditRoutes.get);
-router.post('/admin/profile-edit', profileEditRoutes.post);
+router.get('/profile-edit', profileEditRoutes.get);
+router.post('/profile-edit', profileEditRoutes.post);
 
 module.exports = router;

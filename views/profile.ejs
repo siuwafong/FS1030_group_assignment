@@ -13,91 +13,108 @@
 			<div class="row">
 
 
-					<% if (healthCardNumber) { %>
+
 					<div class="col-md-12">
 						<div class="card main">
 							<div class="card-header">
 								<div class="info">
-									<h4><%= selectedPatient %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= selectedHealthCardNumber %></h4>
+									<h4><%= selectedPatient %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= healthCardNumber %></h4>
 								</div>
-								<% if (pageId === 'profile' ) { %>
-										<form style="display: hidden"
-											action="/admin/profile-edit"
-											method="POST"
-											id="profileEdit">
+				<% if (pageId==='profile' ) { %>
+				<form style="display: hidden"
+					  action="/profile-edit"
+					  method="POST"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="editBtnhealthCardNumber"
+							   name="healthCardNumber"
+							   value="<%=healthCardNumber%>"/>
 
+						<input type="hidden"
+							   id="editBtnDOB"
+							   name="DOB"
+							   value="<%=selectedBirthDate%>"/>
 
+						<input type="hidden"
+							   id="editBtnGender"
+							   name="Gender"
+							   value="<%=selectedGender%>"/>
 
-											<input type="hidden"
-													id="editBtnhealthCardNumber"
-													name="healthCardNumber"
-													value="<%=healthCardNumber%>"/>
+						<input type="hidden"
+							   id="editBtnEmail"
+							   name="Email"
+							   value="<%=selectedEmail%>"/>
 
-											<input type="hidden"
-													id="editBtnDOB"
-													name="DOB"
-													value="<%=selectedBirthDate%>"/>
+						<input type="hidden"
+							   id="editBtnaddress"
+							   name="Address"
+							   value="<%=selectedAddress%>"/>
 
-											<input type="hidden"
-													id="editBtnGender"
-													name="Gender"
-													value="<%=selectedGender%>"/>
+						<input type="hidden"
+							   id="editBtnphone"
+							   name="Phone"
+							   value="<%=selectedPhone%>"/>
 
-											<input type="hidden"
-													id="editBtnEmail"
-													name="Email"
-													value="<%=selectedEmail%>"/>
+						<input type="hidden"
+							   id="editBtnpatient"
+							   name="Patient"
+							   value="<%=selectedPatient%>"/>
 
-											<input type="hidden"
-													id="editBtnaddress"
-													name="Address"
-													value="<%=selectedAddress%>"/>
+						<input type="hidden"
+							   id="editStatus"
+							   name="Action"
+							   value="Edit"/>
 
-											<input type="hidden"
-													id="editBtnphone"
-													name="Phone"
-													value="<%=selectedPhone%>"/>
+                        <button class="btn btn-sm btn-info" type="submit">Edit</button>
+                </form>
+				<% } %>
 
-											<input type="hidden"
-													id="editBtnpatient"
-													name="Patient"
-													value="<%=selectedPatient%>"/>
+				<% if (pageId==='history' ) { %>
+				<form style="display: hidden"
+					  action=""
+					  method="POST"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="editBtnhealthCardNumber"
+							   name="healthCardNumber"
+							   value="<%=healthCardNumber%>"/>
+				        <button class="btn btn-sm btn-info" type="submit">Add History</button>
+                </form>
+				<% } %>
 
-											<input type="hidden"
-													id="editStatus"
-													name="Action"
-													value="Edit"/>
-
-											<button class="btn btn-sm btn-info" type="submit">Edit</button>
-
-											</form>
-									<% } %>
+				<% if (pageId==='record' ) { %>
+				<form style="display: hidden"
+					  action=""
+					  method="POST"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="editBtnhealthCardNumber"
+							   name="healthCardNumber"
+							   value="<%=healthCardNumber%>"/>
+				        <button class="btn btn-sm btn-info" type="submit">Add Medical Record</button>
+                </form>
+				<% } %>
 							</div>
-
 							<div class="card-body">
 
 								<ul class="nav nav-tabs">
 									<li class="nav-item active">
-										<a class="nav-link active" href="profile?healthCardNumber=<%= selectedHealthCardNumber %>">Details</a>
+										<a class="nav-link active" href="profile?healthCardNumber=<%= healthCardNumber %>">Details</a>
 									</li>
 
 
 									<li class="nav-item">
-										<a class="nav-link active" href="record?healthCardNumber=<%= selectedHealthCardNumber %>">Medical Record</a>
+										<a class="nav-link active" href="record?healthCardNumber=<%= healthCardNumber %>">Medical Record</a>
 									</li>
 
 									<li class="nav-item">
-										<a class="nav-link active" href="history?healthCardNumber=<%= selectedHealthCardNumber %>">Visits</a>
+										<a class="nav-link active" href="history?healthCardNumber=<%= healthCardNumber %>">Visits</a>
 									</li>
 								</ul>
 
 
 								<div class="tab-content">
-
-
 								<% if (pageId === 'profile') { %>
-
-
 									<table class="table table-condensed table-bordered margin-top-10">
 										<tbody>
 											<tr>
@@ -151,12 +168,11 @@
 											<div class="col-sm-4">
 											<div class="card border-primary mb-4 record-card">
 												<div class="card-header">
-												Immunology
+												Immunology <span class="badge badge-secondary"><%= countVaccines %></span>
 												</div>
 												<div class="card-body">
 													<ul class="list-group list-group-flush">
 														<% patients.forEach((patient, index) => { %>
-
 														<li class="list-group-item">
 															<%= patient.immunology_type %>
 														</li>
@@ -207,7 +223,7 @@
 							</div>
 						</div>
 					</div>
-					<% }; %>
+
 				</row>
 			</div>
 		</div>

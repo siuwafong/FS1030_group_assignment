@@ -1,6 +1,9 @@
 'use strict';
 
+
+const db = require('../db/users');
 const connection = require('../connection');
+
 
 /**
  * Initial page rendering
@@ -13,7 +16,7 @@ function getProfileEditRoute(req, res) {
     const inAddress = req.body.Address;
     const inPhone = req.body.Phone;
     const inAction = req.body.Action;
-
+  
     console.log(inHealthCardNumber);
     console.log(inDOB);
     console.log(inGender);
@@ -42,7 +45,7 @@ function formatDate(date) {
 /**
  * Form submission
  */
-function postProfileEditRoute(req, res, next) {
+function postProfileEditRoute(req, res, next) {    
 
   // grab data
   const inHealthCardNumber = req.body.healthCardNumber;
@@ -77,7 +80,7 @@ function postProfileEditRoute(req, res, next) {
       DOB: inDOB,
       Gender: inGender,
       Email: inEmail,
-      Address: inAddress,
+      Addres: inAddress,
       Phone: inPhone,
       Patient: inPatient,
       Action: inAction,
@@ -93,16 +96,16 @@ function postProfileEditRoute(req, res, next) {
     console.log(inPatient);
     console.log(inAction);
     // prepare SQL string
-    const updatePatientSQLStr = `UPDATE patients
+    const updatePatientSQLStr = `UPDATE patients 
                                  SET dob='${inDOB}',
                                      gender='${inGender}',
                                      email='${inEmail}',
                                      address='${inAddress}',
                                      phone='${inPhone}'
-
+                                 
                                  WHERE health_card_number='${inHealthCardNumber}'`;
 
-
+    
     try {
       console.log(updatePatientSQLStr);
       // update patient profile
@@ -116,7 +119,7 @@ function postProfileEditRoute(req, res, next) {
     } catch (error) {
       next();
     }
-
+    
   }
 }
 

@@ -2,13 +2,15 @@
 
 ## Getting started
 
-### `npm install`
-
 ## Database setup
 
 Run the script file named  ``database.sql`` in MySQL to set up the database environment.
 
-Update environment variables stored in the file named ``.env`` (DB_USERNAME, DB_PASSWORD) to link your local MySQL environment to Node.js.
+Update your MySQL credentials (DB_USERNAME, DB_PASSWORD) stored as environment variables in the file named ``.envexample``  to link your local MySQL environment to Node.js. Rename the file ``.env``.
+
+## Launch the application
+
+### `npm install`
 
 ### `npm start`
 
