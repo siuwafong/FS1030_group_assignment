@@ -20,7 +20,7 @@
 								<div class="info">
 									<h4><%= selectedPatient %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= selectedHealthCardNumber %></h4>
 								</div>
-				
+				<% if (pageId==='profile' ) { %>
 				<form style="display: hidden" 
 					  action="/profile-edit" 
 					  method="POST" 
@@ -67,7 +67,7 @@
 
                         <button class="btnbtn-sm btn-info" type="submit">Edit</button>
                 </form>
-
+				<% } %>
 							</div>
 							<div class="card-body">
 
