@@ -13,8 +13,6 @@ module.exports = {
     if (healthCardNumber) {
       const queryRecord = "SELECT * FROM `patients` INNER JOIN vitals ON patients.health_card_number  = vitals.health_card_number INNER JOIN immunology ON patients.health_card_number  = immunology.health_card_number  WHERE patients.health_card_number LIKE '%" + String(healthCardNumber) + "%' ORDER BY patients.health_card_number ASC"
 
-      // const queryRecord = "SELECT * FROM `patients` INNER JOIN vitals ON patients.health_card_number  = vitals.health_card_number WHERE patients.health_card_number LIKE '%" + String(healthCardNumber) + "%' ORDER BY patients.health_card_number ASC";
-
       connection.db.query(queryRecord, (err, result) => {
         if (err) {
           res.redirect('/');

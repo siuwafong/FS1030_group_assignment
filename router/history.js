@@ -4,7 +4,7 @@ const connection = require('../connection');
 
 
 /**
- * Profile page
+ * Visit history page
  */
 
 module.exports = {
@@ -20,50 +20,35 @@ module.exports = {
           res.redirect('/');
         }
 
-        console.log(result);
+        if (result.length > 0) {
 
-        /* Patient's name */
-        const patientName = JSON.parse(JSON.stringify(result))[0].first_name + ' ' + JSON.parse(JSON.stringify(result))[0].last_name;
-
-
-
-        // /* Visits */
-        const visitsDate = JSON.parse(JSON.stringify(result))[0].visit_date;
-        const visitsPractitian = 'Dr.' + JSON.parse(JSON.stringify(result))[0].practitian_last_name;
-        const visitsNote = JSON.parse(JSON.stringify(result))[0].note;
+          /* Patient's name */
+          const patientName = JSON.parse(JSON.stringify(result))[0].first_name + ' ' + JSON.parse(JSON.stringify(result))[0].last_name;
 
 
-        res.render('profile.ejs', {
-          patients: result,
-          title: 'EMR Database',
-          pageId: 'history',
-          username: req.session.username,
-          healthCardNumber: healthCardNumber,
-          selectedHealthCardNumber: JSON.parse(JSON.stringify(result))[0].health_card_number,
-          selectedPatient: patientName,
-          selectedVisitsDate: visitsDate,
-          selectedVisitsPractitian: visitsPractitian,
-          selectedVisitsNote: visitsNote,
-        });
-      });
-    } else {
-      const query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
-      // execute query
-      connection.db.query(query, (err, result) => {
-        if (err) {
-          res.redirect('/');
+
+          // /* Visits */
+          const visitsDate = JSON.parse(JSON.stringify(result))[0].visit_date;
+          const visitsPractitian = 'Dr.' + JSON.parse(JSON.stringify(result))[0].practitian_last_name;
+          const visitsNote = JSON.parse(JSON.stringify(result))[0].note;
+
+
+          res.render('profile.ejs', {
+            patients: result,
+            title: 'EMR Database',
+            pageId: 'history',
+            username: req.session.username,
+            healthCardNumber: healthCardNumber,
+            selectedHealthCardNumber: JSON.parse(JSON.stringify(result))[0].health_card_number,
+            selectedPatient: patientName,
+            selectedVisitsDate: visitsDate,
+            selectedVisitsPractitian: visitsPractitian,
+            selectedVisitsNote: visitsNote,
+          });
+        } else {
+          res.redirect(`/admin/profile?healthCardNumber=${healthCardNumber}`)
         }
-
-        res.render('profile.ejs', {
-          patients: result,
-          title: 'EMR Database',
-          pageId: 'profile',
-          username: req.session.username,
-          healthCardNumber: healthCardNumber,
-        });
       });
     }
   },
-
-
 };
