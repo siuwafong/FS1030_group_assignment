@@ -48,13 +48,21 @@ async function updateVitals(healthCardNumber, weight, height, recordDate) {
   });
 }
 
-async function updateImmunologyEntry(healthCardNumber, type, dose, recordDate) {
+
+async function updateImmunologyEntry(healthCardNumber,
+  type,
+  dose,
+  recordDate,
+  OriginType,
+  OriginRecordDate) {
   const updateImmunologySQLStr = `UPDATE immunology 
   SET
   immunology_type = '${type}',
   doses = ${dose},
   record_date = '${recordDate}'
-  WHERE health_card_number= '${healthCardNumber}';`;
+  WHERE health_card_number= '${healthCardNumber}'
+  AND  immunology_type = '${OriginType}'
+  AND record_date = '${OriginRecordDate}';`;
   console.log(updateImmunologySQLStr);
   return db.query(updateImmunologySQLStr, (err, result) => {
     if (err) throw err;
