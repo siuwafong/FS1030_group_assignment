@@ -70,12 +70,13 @@ VALUES
 
 -- create immunology table
  CREATE TABLE IF NOT EXISTS `immunology` (
-  -- `id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `health_card_number` varchar(11) NOT NULL,
   `immunology_type` varchar(20) NOT NULL,
   `doses` INT(2) NOT NULL,
   `record_date` DATE NOT NULL,
-  PRIMARY KEY (`health_card_number`, `immunology_type`, `record_date`),
+  PRIMARY KEY(id),
+  UNIQUE (`health_card_number`, `immunology_type`, `record_date`),
   FOREIGN KEY (`health_card_number`) REFERENCES patients(`health_card_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
