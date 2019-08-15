@@ -17,25 +17,27 @@
 					<input type="hidden" 
 							   id="editBtnhealthCardNumber" 
 							   name="healthCardNumber" 
-							   value="<%healthCardNumber%>"/>
+							   value="<%=healthCardNumber%>"/>
 				</div>
 				<div class="form-group">
 					<label for="bodyWeight">body weight</label>
-					<input type="text" 
+					<input type="number" 
 						   class="form-control" 
 						   id="bodyWeight" 
+						   name="weight"
 						   aria-describedby="bodyWeighHelp" 
 						   placeholder="Enter body weight"
 						   required>
-					<small id="bodyWeighHelp" 
-							class="form-text text-muted"
-								>We'll never share your body Weight with anyone else.
-					</small>
+					       <small id="bodyWeighHelp" 
+					       		class="form-text text-muted"
+					       			>We'll never share your body Weight with anyone else.
+					       </small>
 				</div>
 				<div class="form-group">
 					<label for="bodyHeight">Height</label>
-					<input type="text" 
+					<input type="number" 
 						  class="form-control" 
+						  name="height"
 						  id="bodyHeight" 
 						  placeholder="body weight"
 						  required>
@@ -44,7 +46,8 @@
 					<label for="recordDate">Record Date</label>
 					<input type="date" 
 						class="form-control" 
-						id="recordDate" 						 
+						id="recordDate" 
+						name="recordDate"						 
 						required>
 				</div>				
 				
@@ -54,13 +57,15 @@
 					<input type="text" 
 						  class="form-control" 
 						  id="immunologytype" 						 
+						  name="immunologyType"
 						  required>
 				</div>
 
 				<div class="form-group">
 					<label for="recordDate">doses</label>
-					<input type="text" 
+					<input type="number" 
 						  class="form-control" 
+						  name="doses"
 						  id="doses" 						 
 						  required>
 				</div>
