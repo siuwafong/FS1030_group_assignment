@@ -7,4 +7,4 @@ SESSION_SECRET="secret"
 DB_HOST=localhost
 DB_USERNAME=root
 DB_PASSWORD=password
-DB_DATABASE=testdb
+DB_DATABASE=fs1030

@@ -99,6 +99,11 @@ async function removeUserByName(username) {
   });
 }
 
+/**
+ * remove user by ID
+ * @param {string} id user id
+ * @returns {Promise<Object>} Result
+ */
 async function removeUserById(id) {
   const qryStrRemoveUser = `DELETE FROM users WHERE id ="${id}"`;
   return db.query(qryStrRemoveUser, (err, result) => {

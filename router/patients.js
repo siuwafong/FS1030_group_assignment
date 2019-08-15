@@ -18,7 +18,7 @@ module.exports = {
 
       res.render('patients.ejs', {
         patients: result,
-        title: 'Medisquare | Patients',
+        title: 'EMR Database',
         pageId: 'patients',
         username: req.session.username,
       });

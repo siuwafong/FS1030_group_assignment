@@ -13,6 +13,7 @@ const { getRecordRoute } = require('./record');
 const { getHistoryRoute } = require('./history');
 const { getCreatePatientRoute, postCreatePatientRoute } = require('./create-patient');
 const profileEditRoutes = require('./profile-edit');
+const createMedicalRecordRoute = require('./create-medical-record');
 
 /**
  * Define routes
@@ -47,5 +48,11 @@ router.post('/register', registerRoutes.post);
 // profile edit page
 router.get('/profile-edit', profileEditRoutes.get);
 router.post('/profile-edit', profileEditRoutes.post);
+
+// create medical record page
+
+router.get('/create-medical-record', createMedicalRecordRoute.get);
+router.post('/create-medical-record', createMedicalRecordRoute.post);
+
 
 module.exports = router;

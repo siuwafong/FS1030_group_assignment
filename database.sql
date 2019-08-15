@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS testdb;
-USE testdb;
+CREATE DATABASE IF NOT EXISTS fs1030;
+USE fs1030;
 
 -- create patients table
 CREATE TABLE IF NOT EXISTS `patients` (

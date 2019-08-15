@@ -4,7 +4,7 @@ const connection = require('../connection');
 
 
 /**
- * Profile page
+ * Visit history page
  */
 
 module.exports = {
