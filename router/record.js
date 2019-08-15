@@ -17,13 +17,15 @@ module.exports = {
         if (err) {
           res.redirect('/');
         }
+        
+        console.log(result);
 
         if (result.length <= 0) {
-          console.log('no result');
+          console.log("no result");
           /**
          * TODO:
          *  Get proper handling for this
-         */
+         */                      
           res.render('create-medical-record.ejs', {
             title: 'Create Medical Record',
             pageId: 'createMedicalReCord',
