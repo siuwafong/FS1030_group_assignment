@@ -1,8 +1,8 @@
 'use strict';
 
-const argon2 = require('argon2');
-const db = require('../db/users');
-const connection = require('../connection');
+
+const db = require('../db/patients');
+
 
 /**
  * Initial page rendering
@@ -13,12 +13,11 @@ function getCreateMedicalRecordRoute(req, res) {
     title: 'CreateMedicalRecord',
     username: req.session.username,
     healthCardNumber: req.body.healthCardNumber,
-    
   });
 }
 
 
-/** TODO: 
+/** TODO:
  * Form submission
  */
 function postCreateMedicalRecordRoute(req, res, next) {
@@ -44,7 +43,6 @@ function postCreateMedicalRecordRoute(req, res, next) {
       .catch((error) => {
         console.log(error);
         console.log('error');
-        
       });
     // create new immunology entry
     db.createNewImmunologyEntry(healthCardNumber, immunologyType, doses, recordDate)
@@ -52,10 +50,7 @@ function postCreateMedicalRecordRoute(req, res, next) {
       .catch(next);
 
     res.status(200).redirect(`/admin/record?healthCardNumber=${healthCardNumber}`);
-
-    
   }
-
 }
 
 
