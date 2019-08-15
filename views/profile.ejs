@@ -83,16 +83,16 @@
 				<% } %>
 
 				<% if (pageId==='record' ) { %>
-				<form style="display: hidden"
-					  action="/update-medical-record"
-					  method="GET"
-					  id="profileEdit">
-						<input type="hidden"
-							   id="updateMedRecordBtnhealthCardNumber"
-							   name="healthCardNumber"
+				<form style="display: hidden" 
+					  action="/update-medical-record" 
+					  method="GET" 
+					  id="profileEdit">                    
+						<input type="hidden" 
+							   id="updateMedRecordBtnhealthCardNumber" 
+							   name="healthCardNumber" 
 							   value="<%=healthCardNumber%>"/>
-
-				        <button class="btn btn-sm btn-info" type="submit">Update Medical Record</button>
+						
+				        <button class="btnbtn-sm btn-info" type="submit">Update Medical Record</button>
                 </form>
 				<% } %>
 							</div>
