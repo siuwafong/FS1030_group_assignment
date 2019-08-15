@@ -84,14 +84,14 @@
 
 				<% if (pageId==='record' ) { %>
 				<form style="display: hidden" 
-					  action="" 
-					  method="POST" 
+					  action="/update-medical-record" 
+					  method="GET" 
 					  id="profileEdit">                    
 						<input type="hidden" 
 							   id="editBtnhealthCardNumber" 
 							   name="healthCardNumber" 
 							   value="<%=healthCardNumber%>"/>
-				        <button class="btnbtn-sm btn-info" type="submit">Add Medical Record</button>
+				        <button class="btnbtn-sm btn-info" type="submit">Update Medical Record</button>
                 </form>
 				<% } %>
 							</div>
