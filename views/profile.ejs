@@ -21,48 +21,48 @@
 									<h4><%= selectedPatient %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= selectedHealthCardNumber %></h4>
 								</div>
 				<% if (pageId==='profile' ) { %>
-				<form style="display: hidden" 
-					  action="/profile-edit" 
-					  method="POST" 
-					  id="profileEdit">                    
-						<input type="hidden" 
-							   id="editBtnhealthCardNumber" 
-							   name="healthCardNumber" 
+				<form style="display: hidden"
+					  action="/profile-edit"
+					  method="POST"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="editBtnhealthCardNumber"
+							   name="healthCardNumber"
 							   value="<%=healthCardNumber%>"/>
 
-						<input type="hidden" 
-							   id="editBtnDOB" 
-							   name="DOB" 
+						<input type="hidden"
+							   id="editBtnDOB"
+							   name="DOB"
 							   value="<%=selectedBirthDate%>"/>
 
-						<input type="hidden" 
-							   id="editBtnGender" 
-							   name="Gender" 
+						<input type="hidden"
+							   id="editBtnGender"
+							   name="Gender"
 							   value="<%=selectedGender%>"/>
-												
-						<input type="hidden" 
-							   id="editBtnEmail" 
-							   name="Email" 
+
+						<input type="hidden"
+							   id="editBtnEmail"
+							   name="Email"
 							   value="<%=selectedEmail%>"/>
-						
-						<input type="hidden" 
-							   id="editBtnaddress" 
-							   name="Address" 
+
+						<input type="hidden"
+							   id="editBtnaddress"
+							   name="Address"
 							   value="<%=selectedAddress%>"/>
 
-						<input type="hidden" 
-							   id="editBtnphone" 
-							   name="Phone" 
+						<input type="hidden"
+							   id="editBtnphone"
+							   name="Phone"
 							   value="<%=selectedPhone%>"/>
-						
-						<input type="hidden" 
-							   id="editBtnpatient" 
-							   name="Patient" 
+
+						<input type="hidden"
+							   id="editBtnpatient"
+							   name="Patient"
 							   value="<%=selectedPatient%>"/>
 
-						<input type="hidden" 
-							   id="editStatus" 
-							   name="Action" 
+						<input type="hidden"
+							   id="editStatus"
+							   name="Action"
 							   value="Edit"/>
 
                         <button class="btnbtn-sm btn-info" type="submit">Edit</button>
@@ -70,28 +70,28 @@
 				<% } %>
 
 				<% if (pageId==='history' ) { %>
-				<form style="display: hidden" 
-					  action="" 
-					  method="POST" 
-					  id="profileEdit">                    
-						<input type="hidden" 
-							   id="editBtnhealthCardNumber" 
-							   name="healthCardNumber" 
+				<form style="display: hidden"
+					  action=""
+					  method="POST"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="editBtnhealthCardNumber"
+							   name="healthCardNumber"
 							   value="<%=healthCardNumber%>"/>
 				        <button class="btnbtn-sm btn-info" type="submit">Add History</button>
                 </form>
 				<% } %>
 
 				<% if (pageId==='record' ) { %>
-				<form style="display: hidden" 
-					  action="/update-medical-record" 
-					  method="GET" 
-					  id="profileEdit">                    
-						<input type="hidden" 
-							   id="updateMedRecordBtnhealthCardNumber" 
-							   name="healthCardNumber" 
+				<form style="display: hidden"
+					  action="/update-medical-record"
+					  method="GET"
+					  id="profileEdit">
+						<input type="hidden"
+							   id="updateMedRecordBtnhealthCardNumber"
+							   name="healthCardNumber"
 							   value="<%=healthCardNumber%>"/>
-						
+
 				        <button class="btnbtn-sm btn-info" type="submit">Update Medical Record</button>
                 </form>
 				<% } %>

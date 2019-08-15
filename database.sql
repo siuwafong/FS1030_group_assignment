@@ -15,6 +15,9 @@ CREATE TABLE IF NOT EXISTS `patients` (
   PRIMARY KEY (`health_card_number`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
+SELECT CONCAT(first_name, " ", last_name)  FROM patients WHERE health_card_number = "818-77-5491";
+
+
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Sara-ann', 'Featherbie', '818-77-5491', '1958-08-05', 'Female', 'sfeatherbie0@photobucket.com', '3796 Rutledge Center', '(496) 6490315');
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Theobald', 'Jikovsky', '849-50-0746', '1939-03-20', 'Male', 'tjikovsky1@godaddy.com', '691 Moulton Terrace', '(268) 4603304');
 insert into patients (first_name, last_name, health_card_number, dob, gender, email, address, phone) values ('Cooper', 'Yakunkin', '617-87-2587', '1983-06-24', 'Male', 'cyakunkin2@networksolutions.com', '02 Esch Terrace', '(644) 9339419');
@@ -117,3 +120,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
+SELECT * FROM `patients` INNER JOIN history_visit ON patients.health_card_number  = history_visit.health_card_number WHERE patients.health_card_number LIKE '%818-77-5491%' ORDER BY history_visit.visit_date DESC
