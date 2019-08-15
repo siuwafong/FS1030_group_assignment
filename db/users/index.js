@@ -99,6 +99,11 @@ async function removeUserByName(username) {
   });
 }
 
+/**
+ * remove user by ID
+ * @param {string} id user id
+ * @returns {Promise<Object>} Result
+ */
 async function removeUserById(id) {
   const qryStrRemoveUser = `DELETE FROM users WHERE id ="${id}"`;
   return db.query(qryStrRemoveUser, (err, result) => {
@@ -108,7 +113,33 @@ async function removeUserById(id) {
   });
 }
 
-
+// async function createNewVitals(healthCardNumber, weight, height, recordDate) {
+//   const newVitalSQLStr = `INSERT INTO
+//   vitals (health_card_number, body_weight, body_height, record_date)
+//   VALUES
+//   ('${healthCardNumber}', ${weight}, ${height}, '${recordDate}')`;
+//   console.log(newVitalSQLStr);
+//   return db.query(newVitalSQLStr, (err, result) => {
+//     if (err) throw err;
+//     console.log(result);
+//     return result;
+//   });
+// }
+//
+// async function createNewImmunologyEntry(healthCardNumber, type, dose, recordDate) {
+//
+//   const newImmunologySQLStr = `INSERT INTO
+//   immunology (health_card_number, immunology_type, doses, record_date)
+//   VALUES
+//   ('${healthCardNumber}', '${type}', ${dose}, '${recordDate}')`;
+//   console.log(newImmunologySQLStr);
+//   return db.query(newImmunologySQLStr, (err, result) => {
+//     if (err) throw err;
+//     console.log(result);
+//     return result;
+//   });
+// }
+//
 module.exports = {
   getUsers,
   getUsersById,

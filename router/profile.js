@@ -55,7 +55,7 @@ module.exports = {
           title: 'EMR Database',
           pageId: 'profile',
           username: req.session.username,
-          healthCardNumber: healthCardNumber,
+          healthCardNumber: healthCardNumber,          
         });
       });
     }
