@@ -17,7 +17,7 @@ module.exports = {
         if (err) {
           res.redirect('/');
         }
-        
+
         console.log(result);
 
         if (result.length <= 0) {
@@ -25,7 +25,7 @@ module.exports = {
           /**
          * TODO:
          *  Get proper handling for this
-         */                      
+         */
           res.render('create-medical-record.ejs', {
             title: 'Create Medical Record',
             pageId: 'createMedicalReCord',
@@ -53,6 +53,7 @@ module.exports = {
             selectedHeight: height,
             selectedWeight: weight,
             selectedBmi: bmi,
+            countVaccines: result.length,
           });
         } // end if result <= 0
       }); // end query
