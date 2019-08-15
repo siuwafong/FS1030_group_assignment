@@ -60,6 +60,50 @@
 						  name="immunologyType"
 						  required>
 				</div>
+				<div class="card border-primary">
+					<div class="card-header">Vitals</div>
+						<form method="POST" action="/create-medical-record">
+							<div class="form-group">
+								<input type="hidden"
+											id="editBtnhealthCardNumber"
+											name="healthCardNumber"
+											value="<%=healthCardNumber%>"/>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="bodyWeight">Body weight</label>
+									<input type="number"
+											class="form-control"
+											id="bodyWeight"
+											name="weight"
+											aria-describedby="bodyWeighHelp"
+											placeholder="Enter body weight"
+											required>
+												<small id="bodyWeighHelp"
+														class="form-text text-muted"
+															><small>We'll never share your body weight with anyone else.</small>
+												</small>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="bodyHeight">Height</label>
+									<input type="number"
+											class="form-control"
+											name="height"
+											id="bodyHeight"
+											placeholder="Enter body height"
+											required>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="recordDate">Record Date</label>
+									<input type="date"
+										class="form-control"
+										id="recordDate"
+										name="recordDate"
+										required>
+								</div>
+							</div>
+						</div>
+					</div>
 
 				<div class="form-group">
 					<label for="recordDate">doses</label>
@@ -70,13 +114,36 @@
 						  required>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+					<div class="card border-primary col-md-8">
+						<div class="card-header">Immunology</div>
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="immunologyType">Immunology type</label>
+									<input type="text"
+											class="form-control"
+											id="immunologyType"
+											name="immunologyType"
+											required>
+								</div>
 
-		</div>
+								<div class="form-group col-md-4">
+									<label for="doses">Doses</label>
+									<input type="number"
+											class="form-control"
+											name="doses"
+											id="doses"
+											required>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
 		</section>
 		<section>
-		
+
 		</section>
 
 	</body>
