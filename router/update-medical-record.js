@@ -129,17 +129,68 @@ function postudpateMedicalRecordRoute(req, res, next) {
       console.log(doses);
       console.log(healthCardNumber);
 
-      db.updateVitals(healthCardNumber, weight, height, recordDate)
-        .then(result => result)
-        .catch((error) => {
-          console.log(error);
-          console.log('error');
-        });
-      // create new immunology entry
-      db.updateImmunologyEntry(healthCardNumber, immunologyType, doses, recordDate)
-        .then(result => result)
-        .catch(next);
-      res.status(200).redirect(`/admin/record?healthCardNumber=${healthCardNumber}`);
+      // grab original data
+
+      const queryStr = `SELECT *
+      FROM patients 
+      INNER JOIN vitals 
+      ON patients.health_card_number  = vitals.health_card_number 
+      INNER JOIN immunology 
+      ON patients.health_card_number  = immunology.health_card_number  
+      WHERE patients.health_card_number = "${healthCardNumber}" 
+      `;
+      connection.db.query(queryStr, (err, result) => {
+        if (err) {
+          res.redirect('/');
+        }
+
+        if (result.length <= 0) {
+          console.log('no result');
+          // render create new record
+          // it should not hit here if routes are done correctly
+          // if it's here something went terribly wrong
+          res.render('create-medical-record.ejs', {
+            title: 'Create Medical Record',
+            pageId: 'createMedicalReCord',
+            username: req.session.username,
+            healthCardNumber: healthCardNumber,
+          });
+        } else {
+          // data found
+
+          // consolidate results
+          /* Patient's name */
+          // eslint-disable-next-line max-len
+          // const patientName = `${JSON.parse(JSON.stringify(result))[0].first_name} ${JSON.parse(JSON.stringify(result))[0].last_name}`;
+
+          /* Vitals */
+          // const Originheight = JSON.parse(JSON.stringify(result))[0].body_height;
+          // const Originweight = JSON.parse(JSON.stringify(result))[0].body_weight;
+          // const Originbmi = Math.round((weight * 0.4535 / ((height * 0.3048) ** 2)) * 100) / 100;
+          const OriginrecordDate = JSON.parse(JSON.stringify(result))[0].record_date;
+          const OriginimmunologyType = JSON.parse(JSON.stringify(result))[0].immunology_type;
+          // const Origindoses = JSON.parse(JSON.stringify(result))[0].doses;
+
+          // update vitals
+          db.updateVitals(healthCardNumber, weight, height, recordDate)
+            .then(resultVitals => resultVitals)
+            .catch((error) => {
+              console.log(error);
+              console.log('error');
+            });
+          // update new immunology entry
+          db.updateImmunologyEntry(healthCardNumber,
+            immunologyType,
+            doses,
+            recordDate,
+            OriginimmunologyType,
+            formatDate(OriginrecordDate))
+            .then(resultImmunology => resultImmunology)
+            .catch(next);
+        }
+
+        res.status(200).redirect(`/admin/record?healthCardNumber=${healthCardNumber}`);
+      });
     } else {
       // invalid input
       res.status(400).redirect('/');// end health card check
