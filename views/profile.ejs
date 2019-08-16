@@ -65,7 +65,7 @@
 							   name="Action"
 							   value="Edit"/>
 
-                        <button class="btnbtn-sm btn-info" type="submit">Edit</button>
+                        <button class="btn btn-sm btn-info" type="submit">Edit</button>
                 </form>
 				<% } %>
 
@@ -78,7 +78,7 @@
 							   id="editBtnhealthCardNumber"
 							   name="healthCardNumber"
 							   value="<%=healthCardNumber%>"/>
-				        <button class="btnbtn-sm btn-info" type="submit">Add History</button>
+				        <button class="btn btn-sm btn-info" type="submit">Add History</button>
                 </form>
 				<% } %>
 
@@ -169,7 +169,7 @@
 											<div class="col-sm-4">
 											<div class="card border-primary mb-4 record-card">
 												<div class="card-header">
-												Immunology
+												Immunology <span class="badge badge-primary"><%= countVaccines %></span>
 												</div>
 												<div class="card-body">
 													<ul class="list-group list-group-flush">
