@@ -203,3 +203,20 @@ img {
 .add-patient-form > .form-row > a > button {
 	margin-top: 2rem;
 }
+
+/* Create medical record form */
+
+.medical-record {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.medical-record > form {
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+.medical-record > .form-row {
+	padding-right: 1rem;
+	padding-left: 1rem;
+}

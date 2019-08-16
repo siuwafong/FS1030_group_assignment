@@ -7,11 +7,10 @@
       <%- include('partials/header'); %>
       <section>
          <div class="container">
-            <h2>
-            Create New Medical Record
-            <h2>
-            <h2><%=healthCardNumber%></h2>
-            <div class="card border-primary">
+            <div class="info">
+									<h4>Create Medical Record &nbsp;|&nbsp;TODO: Patient's Name<div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= healthCardNumber %></h4>
+								</div>
+            <div class="card border-primary medical-record">
                <div class="card-header">Vitals</div>
                <form method="POST" action="/create-medical-record">
                   <div class="form-group">
@@ -21,39 +20,40 @@
                         value="<%=healthCardNumber%>"/>
                   </div>
                   <div class="form-row">
-                     <div class="form-group col-md-4">
-                        <label for="bodyWeight">Body weight</label>
-                        <input type="number"
-                           class="form-control"
-                           id="bodyWeight"
-                           name="weight"
-                           aria-describedby="bodyWeighHelp"
-                           placeholder="Enter body weight"
-                           required>
-                        <small id="bodyWeighHelp"
-                           class="form-text text-muted"
-                           ><small>We'll never share your body weight with anyone else.</small>
-                        </small>
-                     </div>
-                     <div class="form-group col-md-4">
-                        <label for="bodyHeight">Height</label>
-                        <input type="number"
-                           class="form-control"
-                           name="height"
-                           id="bodyHeight"
-                           placeholder="Enter body height"
-                           required>
-                     </div>
-                     <div class="form-group col-md-4">
-                        <label for="recordDate">Record Date</label>
-                        <input type="date"
-                           class="form-control"
-                           id="recordDate"
-                           name="recordDate"
-                           required>
-                     </div>
+										<div class="form-group col-md-4">
+											<label for="bodyWeight">Body weight</label>
+											<input type="number"
+													class="form-control"
+													id="bodyWeight"
+													name="weight"
+													aria-describedby="bodyWeighHelp"
+													placeholder="Enter body weight"
+													required>
+											<small id="bodyWeighHelp"
+													class="form-text text-muted"
+													><small>We'll never share your body weight with anyone else.</small>
+											</small>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="bodyHeight">Height</label>
+											<input type="number"
+													class="form-control"
+													name="height"
+													id="bodyHeight"
+													placeholder="Enter body height"
+													required>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="recordDate">Record Date</label>
+											<input type="date"
+													class="form-control"
+													id="recordDate"
+													name="recordDate"
+													required>
+										</div>
                   </div>
-                  <div class="card border-primary ">
+								</div>
+                  <div class="card border-primary medical-record">
                      <div class="card-header">Immunology</div>
                      <div class="form-row">
                         <div class="form-group col-md-4">
