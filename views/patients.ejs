@@ -42,8 +42,18 @@
 						</tr>
 					<% }); %>
 				</tbody>
-
 			</table>
 
-	</body>
+	<span>
+		<a id="previous" href="<%= currentPage - 1%>" class="<% if (currentPage === 1) {%>disabled<%} %>"> Previous </a>
+		<% pageArray.forEach((page, index) => {%>
+		<a href="<%= page %>" id="page<%= page %>" class="<% if (currentPage === page) {%>disabled<%} %>"> <%= page %> </a>
+		<% }); %>
+		<a id="next" href="<%= currentPage + 1%>" class="<% if (currentPage === pageCount) {%>disabled<%} %>"> Next </a>
+	<span>
+
+</body>
+<script>
+
+</script>
 </html>
