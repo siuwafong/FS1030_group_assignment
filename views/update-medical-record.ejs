@@ -11,73 +11,73 @@
 
 		<div class="container">
 			<div class="row">
-                <form  
-                    action="/update-medical-record" 
-                    method="POST" 
-                    id="profileEdit"> 
+                <form
+                    action="/update-medical-record"
+                    method="POST"
+                    id="profileEdit">
 
 			    		<div class="col-md-12">
 			    			<div class="card main">
 			    				<div class="card-header">
 			    					<div class="info">
-			    						<h4><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= HealthCardNumber %></h4>
-			    					</div>								                   						                            
+											<h4>Update Medical Record &nbsp;|&nbsp;<%= patientName %><div class="pipe">&nbsp;|&nbsp;</div>MRN:&nbsp;<%= healthCardNumber %></h4>
+										</div>
 
-                            <input type="hidden" 
-			    				   id="editbtnHealthCard" 
-			    				   name="healthCardNumber" 
-			    				   value="<%= HealthCardNumber %>"/>
+                    <input type="hidden"
+			    				   id="editbtnHealthCard"
+			    				   name="healthCardNumber"
+			    				   value="<%= healthCardNumber %>"/>
 
-                            <input type="hidden" 
-							   id="updateMedRecordBtnSoure" 
-							   name="pageId" 
-							   value="<%=pageId%>"/>
+                    <input type="hidden"
+											id="updateMedRecordBtnSoure"
+											name="pageId"
+											value="<%=pageId%>"/>
 
-                            <button class="btnbtn-sm btn-info" type="submit">Save</button>
+                            <button class="btn btn-sm btn-info" type="submit">Save</button>
 			    				</div>
-			    				<div class="card-body">    			    					
-             
+			    				<div class="card-body">
+
 				                    <div class="form-group ">
 				                    	<label for="bodyWeight">body weight</label>
-				                    	<input type="number" 
-				                    		   class="form-control" 
-				                    		   id="bodyWeight" 
+				                    	<input type="number"
+				                    		   class="form-control"
+				                    		   id="bodyWeight"
 				                    		   name="weight"
-				                    		   aria-describedby="bodyWeighHelp" 
+				                    		   aria-describedby="bodyWeighHelp"
 				                    		   placeholder="Enter body weight"
 											   value="<%=weight%>"
 				                    		   required>
-				                    	       <small id="bodyWeighHelp" 
+				                    	       <small id="bodyWeighHelp"
 				                    	       		class="form-text text-muted"
 				                    	       			>We'll never share your body Weight with anyone else.
 				                    	       </small>
-				                    </div>                
+				                    </div>
 				                    <div class="form-group ">
 				                    	<label for="bodyHeight">Height</label>
-				                    	<input type="number" 
-				                    		  class="form-control" 
+				                    	<input type="number"
+				                    		  class="form-control"
 				                    		  name="height"
-				                    		  id="bodyHeight" 
+				                    		  id="bodyHeight"
 				                    		  placeholder="body height"
 											  value="<%=height%>"
 				                    		  required>
 				                    </div>
                                         <div class="form-group">
 				                    	<label for="recordDate">Record Date</label>
-				                    	<input type="date" 
-				                    		class="form-control" 
-				                    		id="recordDate" 
+				                    	<input type="date"
+				                    		class="form-control"
+				                    		id="recordDate"
 				                    		name="recordDate"
-											value="<%=recordDate%>"						 
+											value="<%=recordDate%>"
 				                    		required>
-				                    </div>				
-                
-				
+				                    </div>
+
+
 				                    <div class="form-group">
 				                    	<label for="recordDate">immunology type</label>
-				                    	<input type="text" 
-				                    		  class="form-control" 
-				                    		  id="immunologytype" 						 
+				                    	<input type="text"
+				                    		  class="form-control"
+				                    		  id="immunologytype"
 				                    		  name="immunologyType"
 											  value="<%=immunologyType%>"
 				                    		  required>
@@ -85,19 +85,19 @@
 
 				                    <div class="form-group">
 				                    	<label for="doses">doses</label>
-				                    	<input type="number" 
-				                    		  class="form-control" 
+				                    	<input type="number"
+				                    		  class="form-control"
 				                    		  name="doses"
 				                    		  id="doses"
-											  value="<%=doses%>" 						 
+											  value="<%=doses%>"
 				                    		  required>
 				                    </div>
 
 
 
-				
+
                 </form>
-			
+
 			</div>
 		</div>
 

@@ -106,37 +106,6 @@ td > a {
 	margin-bottom: 2rem;
 }
 
-.btn-create {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0.375rem 0.75rem;
-  margin-top: 1px;
-  margin-bottom: 25px;
-  border: 1px solid;
-  color: white;
-  border-radius: 9px;
-  font-size: 18px;
-  font-weight: 300;
-  text-decoration: none;
-}
-
-.btn-create.inverse {
-	color: #222;
-	background-color: white;
-	border-color: #b7b7b7;
-}
-
-.btn-create.create {
-	color: lightgreen;
-	font-weight: bold;
-}
-
-.btn-create:hover {
-  border-bottom-width: 4px;
-  margin-bottom: 22px;
-}
-
-
 /* Profile page */
 
 img {

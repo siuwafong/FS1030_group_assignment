@@ -18,7 +18,7 @@
 					<button type="submit" class="btn btn-primary mb-2">Search</button>
 				</form>
 				<form class="form-inline" action="/admin/create">
-					<button type="submit" class="btn-create create inverse">Create Patient</button>
+					<button type="submit" class="btn btn-primary">Create Patient</button>
 				</form>
 			</div>
 
@@ -38,7 +38,7 @@
 							<td><a href="profile?healthCardNumber=<%= patient.health_card_number %>"><%= patient.health_card_number %></a></td>
 							<td><%= patient.first_name %></td>
 							<td><%= patient.last_name %></td>
-							<td><%= patient.age %></td>
+							<td><%= Math.floor( ( Date.now() - patient.dob ) / (1000*60*60*24*365) )%></td>
 						</tr>
 					<% }); %>
 				</tbody>

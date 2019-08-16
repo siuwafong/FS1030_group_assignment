@@ -36,12 +36,12 @@ function getudpateMedicalRecordRoute(req, res) {
     if (healthCardNumber) {
       // get data
       const queryStr = `SELECT *
-      FROM patients 
-      INNER JOIN vitals 
-      ON patients.health_card_number  = vitals.health_card_number 
-      INNER JOIN immunology 
-      ON patients.health_card_number  = immunology.health_card_number  
-      WHERE patients.health_card_number = "${healthCardNumber}" 
+      FROM patients
+      INNER JOIN vitals
+      ON patients.health_card_number  = vitals.health_card_number
+      INNER JOIN immunology
+      ON patients.health_card_number  = immunology.health_card_number
+      WHERE patients.health_card_number = "${healthCardNumber}"
       `;
       connection.db.query(queryStr, (err, result) => {
         if (err) {
@@ -79,7 +79,7 @@ function getudpateMedicalRecordRoute(req, res) {
             title: 'MediSquare | Update Medical Record',
             pageId: 'updateMedicalRecord',
             username: req.session.username,
-            HealthCardNumber: healthCardNumber,
+            healthCardNumber: healthCardNumber,
             patientName: patientName,
             height: height,
             weight: weight,
@@ -132,12 +132,12 @@ function postudpateMedicalRecordRoute(req, res, next) {
       // grab original data
 
       const queryStr = `SELECT *
-      FROM patients 
-      INNER JOIN vitals 
-      ON patients.health_card_number  = vitals.health_card_number 
-      INNER JOIN immunology 
-      ON patients.health_card_number  = immunology.health_card_number  
-      WHERE patients.health_card_number = "${healthCardNumber}" 
+      FROM patients
+      INNER JOIN vitals
+      ON patients.health_card_number  = vitals.health_card_number
+      INNER JOIN immunology
+      ON patients.health_card_number  = immunology.health_card_number
+      WHERE patients.health_card_number = "${healthCardNumber}"
       `;
       connection.db.query(queryStr, (err, result) => {
         if (err) {
