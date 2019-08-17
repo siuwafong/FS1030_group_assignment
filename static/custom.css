@@ -106,8 +106,6 @@ td > a {
 	margin-bottom: 2rem;
 }
 
-<<<<<<< HEAD
-=======
 .btn-create {
 	display: inline-block;
 	vertical-align: top;
@@ -138,7 +136,6 @@ td > a {
 	margin-bottom: 22px;
 }
 
->>>>>>> wilson1
 /* Profile page */
 
 img {
@@ -205,7 +202,6 @@ img {
 	margin-top: 2rem;
 }
 
-<<<<<<< HEAD
 /* Create medical record form */
 
 .medical-record {
@@ -221,10 +217,10 @@ img {
 .medical-record > .form-row {
 	padding-right: 1rem;
 	padding-left: 1rem;
-=======
+}
+
 .disabled {
 	text-decoration: none;
 	color: black;
 	pointer-events: none;
->>>>>>> wilson1
 }

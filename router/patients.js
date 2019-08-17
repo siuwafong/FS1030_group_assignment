@@ -8,29 +8,58 @@ const connection = require("../connection");
 
 module.exports = {
   getSearchRoute: (req, res) => {
-    const query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
-    const pageNumber = Number(req.params.id);
+    let healthCardNumber = req.param("healthCardNumber");
+
+    let query;
+    if (!healthCardNumber) {
+      query = "SELECT * FROM `patients` ORDER BY health_card_number ASC";
+    } else {
+      query =
+        "SELECT * FROM `patients` WHERE health_card_number LIKE '%" +
+        healthCardNumber +
+        "%'";
+    }
+
+    const pageNumber = Number(req.params.id.charAt(0));
 
     // execute query
-    connection.db.query(query, (err, result) => {
+    connection.db.query(query, [healthCardNumber], (err, result) => {
       if (err) {
         res.redirect("/");
       }
+      let patientsPage = new Array();
 
       let patients = result;
 
+      if (patients.length === 0) {
+        let emptyPatient = new Object();
+        emptyPatient.health_card_number =
+          "No patient with the health card number " +
+          healthCardNumber +
+          " found.";
+        emptyPatient.first_name = "";
+        emptyPatient.last_name = "";
+        emptyPatient.age = "";
+        patientsPage[0] = emptyPatient;
+      }
       // pagination functions
       const patientCount = patients.length;
-      let pageCount = Math.ceil(patientCount / 10);
-      let i;
-      let patientsPage = new Array();
+      let pageCount;
+      if (patientCount === 0) {
+        pageCount = 1;
+      } else {
+        pageCount = Math.ceil(patientCount / 10);
+      }
 
+      let i;
       function makePage() {
-        if (Number(pageNumber) === pageCount || patientCount < 11) {
-          for (i = pageNumber * 10 - 9; i < patients.length; i++)
+        if (patientCount < 11) {
+          for (i = 0; i < patients.length; i++) patientsPage.push(patients[i]);
+        } else if (Number(pageNumber) === pageCount) {
+          for (i = pageNumber * 10 - 10; i < patients.length; i++)
             patientsPage.push(patients[i]);
         } else {
-          for (i = pageNumber * 10 - 9; i < pageNumber * 10; i++)
+          for (i = pageNumber * 10 - 10; i < pageNumber * 10; i++)
             patientsPage.push(patients[i]);
         }
       }

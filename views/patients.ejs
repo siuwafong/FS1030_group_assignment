@@ -10,13 +10,15 @@
 		<main>
 			<section class="container">
 			<div class="container-form">
-				<form class="form-inline" action="/admin/patients">
+
+				<form method="get" class="form-inline" action="../patients/1">
 					<label for="id">Health Card Number</label>
 					<div class="form-group mx-sm-3 mb-2">
 						<input type="text" class="form-control" placeholder="Health Card Number" name="healthCardNumber" />
 					</div>
-					<button type="submit" class="btn btn-primary mb-2">Search</button>
+					<input type="submit" class="btn btn-primary mb-2"/>
 				</form>
+
 				<form class="form-inline" action="/admin/create">
 					<button type="submit" class="btn btn-primary">Create Patient</button>
 				</form>
@@ -33,12 +35,12 @@
 				</thead>
 
 				<tbody>
-					<% patients.forEach((patient, index) => { %>
+					<% patientsPage.forEach((patient, index) => { %>
 						<tr>
-							<td><a href="profile?healthCardNumber=<%= patient.health_card_number %>"><%= patient.health_card_number %></a></td>
+							<td><a href="../profile?healthCardNumber=<%= patient.health_card_number %>" class="<% if (patient.health_card_number.includes('No patient')) {%>disabled<%} %>"><%= patient.health_card_number %></a></td>
 							<td><%= patient.first_name %></td>
 							<td><%= patient.last_name %></td>
-							<td><%= Math.floor( ( Date.now() - patient.dob ) / (1000*60*60*24*365) )%></td>
+							<td><% if (patient.age !== "") {%> <%= Math.floor( ( Date.now() - patient.dob ) / (1000*60*60*24*365) ) %> <%} %></td>
 						</tr>
 					<% }); %>
 				</tbody>
